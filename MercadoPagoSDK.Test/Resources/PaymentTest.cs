@@ -119,7 +119,7 @@ namespace MercadoPagoSDK.Test.Resources
         [Test]
         public void Payment_FindById_ShouldBeOk()
         { 
-            Payment payment = Payment.FindById(LastPayment.Id); 
+            Payment payment = Payment.FindById((int?)LastPayment.Id); 
             Assert.AreEqual("Pago de Prueba", payment.Description); 
         }
 
@@ -160,7 +160,7 @@ namespace MercadoPagoSDK.Test.Resources
             
             Payment OtherPayment = new Payment
             {
-                TransactionAmount = (float)10.0,
+                TransactionAmount = 10.0m,
                 Token = Helpers.CardHelper.SingleUseCardToken(PublicKey, "approved"), // 1 use card token
                 Description = "Pago de Prueba",
                 PaymentMethodId = "visa",

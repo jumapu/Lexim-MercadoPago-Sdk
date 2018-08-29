@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Net;
+using System.Threading;
 using MercadoPago.DataStructures.Customer;
 
 namespace MercadoPagoSDK.Test.Resources
@@ -57,9 +58,9 @@ namespace MercadoPagoSDK.Test.Resources
             customer.Save(); 
             LastCustomer = customer;
 
-            Console.WriteLine("id: {0}", customer.Id.ToString());
+            Assert.IsTrue(customer.Id != null, $"Failed: Customer could not be successfully created: {customer.Errors?.Message}");
 
-            Assert.IsTrue(customer.Id != null, "Failed: Customer could not be successfully created"); 
+            Console.WriteLine("id: {0}", customer.Id.ToString());
         }
 
         [Test()]
@@ -97,6 +98,7 @@ namespace MercadoPagoSDK.Test.Resources
         [Test()]
         public void Customer_SearchWithFilterGetListOfCustomers()
         {
+            Thread.Sleep(1000);
             Dictionary<string, string> filters = new Dictionary<string, string>();
             filters.Add("email", "Rafa.Williner@gmail.com");
             List<Customer> customers = Customer.Search(filters);

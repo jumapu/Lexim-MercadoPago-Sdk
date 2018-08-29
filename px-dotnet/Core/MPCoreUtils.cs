@@ -4,10 +4,11 @@ using System;
 using System.Collections.Generic;
 using Newtonsoft.Json.Converters;
 using MercadoPago.DataStructures.Generic;
+using System.Linq;
 
 namespace MercadoPago
 {
-    public static class MPCoreUtils
+    internal static class MPCoreUtils
     {
         /// <summary>
         /// Find specified tokens.
@@ -50,41 +51,6 @@ namespace MercadoPago
         }
 
         /// <summary>
-        /// Static method that transforms all attributes members of the instance in a JSON Object.
-        /// </summary>
-        /// <returns>a JSON Object with the attributes members of the instance</returns>
-        public static JObject GetJsonFromResource<T>(T resource) where T : MPBase
-        {
-            JsonSerializer serializer = new JsonSerializer { 
-                NullValueHandling = NullValueHandling.Ignore, 
-                ContractResolver = new CustomSerializationContractResolver() 
-            };
-            serializer.Converters.Add(new IsoDateTimeConverter()
-            {
-                DateTimeFormat = "yyyy-MM-dd'T'HH:mm:ss.fffK"
-            });
-            JObject jobject = JObject.FromObject(resource, serializer); 
-            return jobject;
-        }
-
-        /// <summary>
-        /// Static method that transforms JObject in to a resource.
-        /// </summary>
-        /// <returns>an object obteined from obj</returns>
-        public static MPBase GetResourceFromJson<T>(Type type, JObject jObj) where T : MPBase
-        {
-            JsonSerializer serializer = new JsonSerializer { 
-                NullValueHandling = NullValueHandling.Ignore,  
-                ContractResolver = new CustomDeserializationContractResolver()
-            };
-            serializer.Converters.Add(new IsoDateTimeConverter(){
-                DateTimeFormat = "yyyy-MM-dd'T'HH:mm:ss.fffK"
-            });
-            T resource = (T)jObj.ToObject<T>(serializer);
-            return resource;
-        }
-
-        /// <summary>
         /// Static method that transforms JObject in to a resource.
         /// </summary>
         /// <returns>an object obteined from obj</returns>
@@ -102,9 +68,7 @@ namespace MercadoPago
             return badParams;
         }
 
-
-
-        public static JArray GetArrayFromJsonElement<T>(JObject jsonElement) where T : MPBase
+        public static JArray GetArrayFromJsonElement(JObject jsonElement)
         {
             JArray jsonArray = null;
             if (jsonElement is JObject)
@@ -114,12 +78,27 @@ namespace MercadoPago
             return jsonArray;
         }
 
-        public static JArray GetJArrayFromStringResponse<T>(string stringResponse) where T : MPBase
+        public static List<T> ToList<T>(this MPAPIResponse response) where T : ResourceBase
         {
-            JArray jsonArray = null;
-            jsonArray = JArray.Parse(stringResponse);
-            return jsonArray;
-        }
+            var result = new List<T>();
 
+            var jsonArray =
+                response.JsonObjectResponse != null
+                    ? GetArrayFromJsonElement(response.JsonObjectResponse)
+                    : JArray.Parse(response.StringResponse);
+
+            if (jsonArray != null)
+            {
+                foreach (var jObject in jsonArray.OfType<JObject>())
+                {
+                    //TODO: Por que esto deserializa y serializa de nuevo?
+                    T resource = jObject.Deserialize<T>();
+                    resource.LastKnownJson = resource.Serialize();
+                    result.Add(resource);
+                }
+            }
+
+            return result;
+        }
     }
 }

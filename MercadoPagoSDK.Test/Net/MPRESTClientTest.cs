@@ -14,7 +14,7 @@ using ValidationRange = System.ComponentModel.DataAnnotations.RangeAttribute;
 namespace MercadoPagoSDK.Test
 {
     [TestFixture()]
-    public class MPRESTClientTest : MPRESTClient
+    internal class MPRESTClientTest : MPRESTClient
     {
 
         [Test()]
@@ -227,7 +227,7 @@ namespace MercadoPagoSDK.Test
 
         [Idempotent]
         [TestFixture()]
-        public class DummyClass : MPBase
+        public class DummyClass : ResourceBase
         {
             [Required]
             [RegularExpression(@"^(?:.*[a-z]){7,}$")]
