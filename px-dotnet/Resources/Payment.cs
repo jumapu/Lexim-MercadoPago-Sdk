@@ -244,6 +244,7 @@ namespace MercadoPago.Resources
         /// <summary>
         /// Gives more detailed information on the current state or rejection cause
         /// </summary>
+        [Required]
         public string PaymentMethodId { get; set; }
 
         /// <summary>
@@ -275,7 +276,8 @@ namespace MercadoPago.Resources
         /// <summary>
         /// Selected quantity of installments
         /// </summary>
-        public int? Installments { get; set; }
+        [Range(1,99)]
+        public int Installments { get; set; }
 
         /// <summary>
         /// URL where mercadopago will send notifications associated to changes in this payment
