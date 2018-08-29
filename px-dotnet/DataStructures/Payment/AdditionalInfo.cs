@@ -21,7 +21,7 @@ namespace MercadoPago.DataStructures.Payment
         /// <summary>
         /// Shipping information
         /// </summary>
-        public Shipment Shipment? Shipments { get; set; }
+        public Shipment? Shipments { get; set; }
         /// <summary>
         /// Barcode information
         /// </summary>
