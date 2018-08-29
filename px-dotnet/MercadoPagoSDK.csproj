@@ -2,17 +2,19 @@
 <Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <RootNamespace>MercadoPago</RootNamespace>
-    <AssemblyName>MercadoPago</AssemblyName>
+    <AssemblyName>Lexim.MercadoPago</AssemblyName>
     <TargetFrameworks>netstandard2.0;net35</TargetFrameworks>
     <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
     <FileAlignment>512</FileAlignment>
-    <PackageId>mercadopago-sdk</PackageId>
-    <PackageVersion>1.0.31</PackageVersion>
-    <Authors>Williner Rafael, Zachary Gerardo, Joel Ibaceta</Authors>
-    <Description>MercadoPago SDK para .Net</Description>
-    <Owners>MercadoPago</Owners>
-    <PackageProjectUrl>https://github.com/mercadopago/px-dotnet</PackageProjectUrl>
-    <PackageReleaseNotes>Error attribute to handle recuperable bad params errors</PackageReleaseNotes>
+    <PackageId>Lexim.MercadoPago.Sdk</PackageId>
+    <PackageVersion>1.0.0</PackageVersion>
+    <Authors>Federico Berasategui</Authors>
+    <Description>Unofficial .NET MercadoPago SDK</Description>
+    <Owners>Lexim</Owners>
+    <PackageProjectUrl>https://github.com/leximsoluciones/px-dotnet</PackageProjectUrl>
+    <PackageReleaseNotes>Initial release</PackageReleaseNotes>
+    <Company>Lexim Soluciones</Company>
+    <Product>Lexim MercadoPago SDK</Product>
   </PropertyGroup>
   <ItemGroup>
     <Compile Remove="Core\MPBase.cs" />
