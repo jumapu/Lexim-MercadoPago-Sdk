@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Diagnostics;
 using MercadoPago.Common;
 using MercadoPago.DataStructures.Preference;
 using MercadoPago.Resources;
@@ -36,9 +31,10 @@ namespace MercadoPagoExample.Payments
                 }
             };
             
-            // Save and posting preference
+            // save to MercadoPago
             preference.Save();
 
+			// the InitPoint property contains the URL of the web checkout screen for this preference
             Process.Start(preference.InitPoint);
         }
     }

@@ -7,16 +7,18 @@
     <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
     <FileAlignment>512</FileAlignment>
     <PackageId>Lexim.MercadoPago.Sdk</PackageId>
-    <PackageVersion>1.0.0</PackageVersion>
-    <Authors>Williner Rafael, Zachary Gerardo, Joel Ibaceta, Federico Berasategui</Authors>
+    <PackageVersion>1.0.1</PackageVersion>
+    <Authors>Federico Berasategui, Williner Rafael, Zachary Gerardo, Joel Ibaceta</Authors>
     <Description>Unofficial .NET MercadoPago SDK</Description>
     <Owners>Lexim</Owners>
-    <PackageProjectUrl>https://github.com/leximsoluciones/px-dotnet</PackageProjectUrl>
+    <PackageProjectUrl>https://github.com/LeximSoluciones/Lexim-MercadoPago-Sdk</PackageProjectUrl>
     <PackageReleaseNotes>Initial release</PackageReleaseNotes>
     <Company>Lexim Soluciones</Company>
     <Product>Lexim MercadoPago SDK</Product>
     <PackageIconUrl>https://user-images.githubusercontent.com/13060549/44829388-ef4c7200-abf2-11e8-9659-c1c40d114491.png</PackageIconUrl>
-    <RepositoryUrl>https://github.com/LeximSoluciones/dx-dotnet/blob/master/LICENSE</RepositoryUrl>
+    <RepositoryUrl>https://github.com/LeximSoluciones/Lexim-MercadoPago-Sdk</RepositoryUrl>
+    <Version>1.0.1</Version>
+    <PackageLicenseUrl>https://github.com/LeximSoluciones/Lexim-MercadoPago-Sdk/blob/master/LICENSE</PackageLicenseUrl>
   </PropertyGroup>
   <ItemGroup>
     <Compile Remove="Core\MPBase.cs" />
@@ -28,9 +30,6 @@
     <Reference Include="System.Core" />
     <Reference Include="System.Net" />
     <Reference Include="System.Web" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="px-dotnet.nuspec" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Microsoft.Net.Compilers" Version="2.8.2" />

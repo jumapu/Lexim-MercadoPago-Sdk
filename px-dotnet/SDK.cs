@@ -7,20 +7,16 @@ namespace MercadoPago
 {
     public class SDK
     {
-        private const string DEFAULT_BASE_URL = "https://api.mercadopago.com";
-                
-        private static string UserToken = null;
-        public static string RefreshToken = null;
+        private const string DefaultBaseUrl = "https://api.mercadopago.com";
+
+        internal static string RefreshToken = null;
 
         /// <summary>  
         ///  Property that represent the client secret token.
         /// </summary>
         public static string ClientSecret
         {
-            get
-            {
-                return _clientSecret;
-            }
+            get => _clientSecret;
             set
             {
                 if (!string.IsNullOrEmpty(_clientSecret))
@@ -30,17 +26,15 @@ namespace MercadoPago
                 _clientSecret = value;
             }
         }
-        static string _clientSecret = null;
+
+        private static string _clientSecret;
 
         /// <summary>
         /// Property that represents a client id.
         /// </summary>
         public static string ClientId
         {
-            get
-            {
-                return _clientId;
-            }
+            get => _clientId;
             set
             {
                 if (!string.IsNullOrEmpty(_clientId))
@@ -50,17 +44,15 @@ namespace MercadoPago
                 _clientId = value;
             }
         }
-        static string _clientId = null;
+
+        private static string _clientId;
 
         /// <summary>
         /// MercadoPago AccessToken.
         /// </summary>
         public static string AccessToken
         {
-            get
-            {
-                return _accessToken;
-            }
+            get => _accessToken;
             set
             {
                 if (!string.IsNullOrEmpty(_accessToken))
@@ -70,17 +62,15 @@ namespace MercadoPago
                 _accessToken = value;
             }
         }
-        static string _accessToken = null;
+
+        private static string _accessToken;
 
         /// <summary>
         /// MercadoPAgo app id.
         /// </summary>
         public static string AppId
         {
-            get
-            {
-                return _appId;
-            }
+            get => _appId;
             set
             {
                 if (!string.IsNullOrEmpty(_appId))
@@ -90,28 +80,23 @@ namespace MercadoPago
                 _appId = value;
             }
         }
-        static String _appId = null;
+
+        private static string _appId;
 
         /// <summary>
         /// Api base URL. Currently https://api.mercadopago.com
         /// </summary>
-        public static string BaseUrl
-        {
-            get
-            {
-                return _baseUrl;
-            }
-        }
-        static string _baseUrl = DEFAULT_BASE_URL;
+        public static string BaseUrl { get; private set; } = DefaultBaseUrl;
 
         /// <summary>
         /// Dictionary based configuration. Valid configuration keys:
         /// clientSecret, clientId, accessToken, appId
         /// </summary>
         /// <param name="configurationParams"></param>
-        public static void SetConfiguration(IDictionary<String, String> configurationParams)
+        public static void SetConfiguration(IDictionary<string, string> configurationParams)
         {
-            if (configurationParams == null) throw new ArgumentException("Invalid configurationParams parameter");
+            if (configurationParams == null)
+                throw new ArgumentException("Invalid configurationParams parameter");
 
             configurationParams.TryGetValue("clientSecret", out _clientSecret);
             configurationParams.TryGetValue("clientId", out _clientId);
@@ -125,7 +110,8 @@ namespace MercadoPago
         /// <param name="config"></param>
         public static void SetConfiguration(Configuration config)
         {
-			if (config == null) throw new ArgumentException("config parameter cannot be null");
+			if (config == null)
+                throw new ArgumentException("config parameter cannot be null");
 
             _clientSecret = GetConfigValue(config, "ClientSecret");
             _clientId = GetConfigValue(config, "ClientId");
@@ -143,7 +129,7 @@ namespace MercadoPago
             _clientId = null;
             _accessToken = null;
             _appId = null;
-            _baseUrl = DEFAULT_BASE_URL;
+            BaseUrl = DefaultBaseUrl;
         }
 
         /// <summary>
@@ -152,7 +138,7 @@ namespace MercadoPago
         /// </summary>
         public static void SetBaseUrl(string baseUrl)
         {
-            _baseUrl = baseUrl;
+            BaseUrl = baseUrl;
         }
 
         private static string GetConfigValue(Configuration config, string key)
@@ -192,14 +178,5 @@ namespace MercadoPago
 
             AccessToken = accessToken;
         }
-
-        /// <summary>
-        /// Gets the custom user token.
-        /// </summary>
-        /// <returns>User token to return.</returns>
-        public static string GetUserToken()
-        {
-            return UserToken;
-        }        
     }
 }
