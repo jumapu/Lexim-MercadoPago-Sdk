@@ -14,14 +14,14 @@ namespace MercadoPagoExample
 
         public static void LoadOrPromptAccessToken()
         {
-            SDK.AccessToken  = LoadOrPrompt(SDK.AccessToken,  nameof(SDK.AccessToken),  "Ingrese Access Token: ");
+            SDK.AccessToken  = LoadOrPrompt(SDK.AccessToken,  "ACCESS_TOKEN",  "Ingrese Access Token: ");
         }
 
         public static void LoadOrPromptClientCredentials()
         {
-            SDK.ClientId     = LoadOrPrompt(SDK.ClientId,     nameof(SDK.ClientId),     "Ingrese Client Id: ");
-            SDK.ClientSecret = LoadOrPrompt(SDK.ClientSecret, nameof(SDK.ClientSecret), "Ingrese Client Secret: ");
-            SDK.AppId        = LoadOrPrompt(SDK.AppId,        nameof(SDK.AppId),        "Ingrese App Id: ");
+            SDK.ClientId     = LoadOrPrompt(SDK.ClientId,     "CLIENT_ID",     "Ingrese Client Id: ");
+            SDK.ClientSecret = LoadOrPrompt(SDK.ClientSecret, "CLIENT_SECRET", "Ingrese Client Secret: ");
+            SDK.AppId        = LoadOrPrompt(SDK.AppId,        "APP_ID",        "Ingrese App Id: ");
         }
 
         private static string LoadOrPrompt(string currentValue, string name, string prompt)
