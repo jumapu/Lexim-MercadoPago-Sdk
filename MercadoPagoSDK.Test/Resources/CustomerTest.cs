@@ -88,7 +88,7 @@ namespace MercadoPagoSDK.Test.Resources
                 LastCustomer.Delete();
                 Assert.Pass();
             } 
-            catch (ArgumentException _e)
+            catch (ArgumentException)
             { 
                 Assert.Fail();
             };

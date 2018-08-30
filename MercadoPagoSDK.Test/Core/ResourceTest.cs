@@ -190,7 +190,7 @@ namespace MercadoPagoSDK.Test
                 HttpWebRequest request = (HttpWebRequest)WebRequest.Create("https://httpbin.org?mock=12345");
                 MPCache.AddToCache("NewCache", new MPAPIResponse(HttpMethod.GET, request, new JObject() { }, (HttpWebResponse)request.GetResponse()));
             }
-            catch (MPException ex)
+            catch (MPException)
             {
                 Assert.Fail();
             }
@@ -418,7 +418,7 @@ namespace MercadoPagoSDK.Test
             {
                 result = resource.Load("567");
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 Assert.Pass();
                 return;

@@ -13,6 +13,12 @@ namespace MercadoPago
 {
     public abstract class ResourceBase
     {
+        // prevent derived classes outside this assembly.
+        internal ResourceBase()
+        {
+            
+        }
+
         public RecuperableError Errors { get; internal set; }
 
         internal MPAPIResponse LastApiResponse { get; set; }
@@ -31,6 +37,12 @@ namespace MercadoPago
 
     public abstract class Resource<T>: ResourceBase where T: ResourceBase, new()
     {
+        // prevent derived classes outside this assembly.
+        internal Resource()
+        {
+            
+        }
+
         internal static MPAPIResponse Invoke(HttpMethod httpMethod, string path, PayloadType payloadType, JObject payload, string accessToken, Dictionary<string, string> queryParameters, bool useCache, int requestTimeout, int retries)
         {
             path = CreatePath(path, accessToken, queryParameters);

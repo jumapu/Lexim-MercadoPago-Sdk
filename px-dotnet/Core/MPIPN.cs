@@ -7,13 +7,13 @@ using System.Text;
 
 namespace MercadoPago.Core
 {
-    [Obsolete("Use " + nameof(Ipn) + " instead.")]
+    [Obsolete("Use " + nameof(Ipn) + " instead.", true)]
     public class MPIPN
     {        
         public partial class Topic
         {                                    
-            public static String merchantOrder { get { return "MercadoPago.Resources.MerchantOrder"; } }
-            public static String payment { get { return "MercadoPago.Resources.Payment"; } }                
+            public static string merchantOrder => "MercadoPago.Resources.MerchantOrder";
+            public static string payment => "MercadoPago.Resources.Payment";
         }
 
         public static Type GetType(string resourceClassName)
