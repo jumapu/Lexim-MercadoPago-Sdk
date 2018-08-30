@@ -8,13 +8,15 @@
     <FileAlignment>512</FileAlignment>
     <PackageId>Lexim.MercadoPago.Sdk</PackageId>
     <PackageVersion>1.0.0</PackageVersion>
-    <Authors>Federico Berasategui</Authors>
+    <Authors>Williner Rafael, Zachary Gerardo, Joel Ibaceta, Federico Berasategui</Authors>
     <Description>Unofficial .NET MercadoPago SDK</Description>
     <Owners>Lexim</Owners>
     <PackageProjectUrl>https://github.com/leximsoluciones/px-dotnet</PackageProjectUrl>
     <PackageReleaseNotes>Initial release</PackageReleaseNotes>
     <Company>Lexim Soluciones</Company>
     <Product>Lexim MercadoPago SDK</Product>
+    <PackageIconUrl>https://user-images.githubusercontent.com/13060549/44829388-ef4c7200-abf2-11e8-9659-c1c40d114491.png</PackageIconUrl>
+    <RepositoryUrl>https://github.com/LeximSoluciones/dx-dotnet/blob/master/LICENSE</RepositoryUrl>
   </PropertyGroup>
   <ItemGroup>
     <Compile Remove="Core\MPBase.cs" />
