@@ -44,7 +44,7 @@ MercadoPago.SDK.AccessToken = "YOUR_ACCESS_TOKEN";
 
 > **Tip**: You can obtain your MercadoPago credentials [here](https://www.mercadopago.com/mla/account/credentials?type=basic)
 
-### 3. Creating a Preference for basic checkout
+### 3. Creating a Preference for Web (a.k.a "basic") checkout
     
 ```csharp
 using System.Diagnostics;
