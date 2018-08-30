@@ -10,10 +10,10 @@ This is an unofficial version of the [MercadoPago SDK for .NET](https://github.c
 
 It has several improvements currently not present in the official version:
 
-  - Bug fixes
-  - Per-request Access-Token
-  - Better API interface
-  - Linq Provider
+  - [Bug fixes](https://github.com/LeximSoluciones/Lexim-MercadoPago-Sdk/blob/master/changelog.md#bug-fixes)
+  - [Per-request Access-Token](https://github.com/LeximSoluciones/Lexim-MercadoPago-Sdk/blob/master/changelog.md#new-feature-per-request-access-token)
+  - [Better API interface](https://github.com/LeximSoluciones/Lexim-MercadoPago-Sdk/blob/master/changelog.md#better-api-interface)
+  - [Linq Provider](https://github.com/LeximSoluciones/Lexim-MercadoPago-Sdk/blob/master/Docs/Linq.md)
 
 ### .Net versions supported:
   
