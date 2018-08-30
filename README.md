@@ -22,7 +22,7 @@ It has several improvements currently not present in the official version:
 
 ## Installation 
 
-install the Nuget Package Lexim.MercadoPago.Sdk using your favorite package manager.
+Install Nuget Package [Lexim.MercadoPago.Sdk](https://www.nuget.org/packages/Lexim.MercadoPago.Sdk/) using your favorite package manager.
 
 ## Quick Start
 
