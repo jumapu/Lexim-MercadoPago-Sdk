@@ -13,12 +13,12 @@ It has several improvements currently not present in the official version:
   - [Bug fixes](https://github.com/LeximSoluciones/Lexim-MercadoPago-Sdk/blob/master/changelog.md#bug-fixes)
   - [Per-request Access-Token](https://github.com/LeximSoluciones/Lexim-MercadoPago-Sdk/blob/master/changelog.md#new-feature-per-request-access-token)
   - [Better API interface](https://github.com/LeximSoluciones/Lexim-MercadoPago-Sdk/blob/master/changelog.md#better-api-interface)
-  - [Linq Provider](https://github.com/LeximSoluciones/Lexim-MercadoPago-Sdk/blob/master/Docs/Linq.md)
+  - [LINQ Provider](https://github.com/LeximSoluciones/Lexim-MercadoPago-Sdk/blob/master/Docs/Linq.md)
 
-### .Net versions supported:
+### .NET versions supported:
   
-  - .Net Framework 3.5 and above
-  - .Net Standard 2.0
+  - .NET Framework 3.5 and above
+  - .NET Standard 2.0
 
 ## Installation 
 

@@ -14,7 +14,7 @@
 
       See [Usage example](https://github.com/LeximSoluciones/Lexim-MercadoPago-Sdk/blob/master/MercadoPagoExample/Payments/UserAccessTokenExample.cs) for details.
 
-### Better API interface:
+### Cleaner API surface:
 
   - Many methods, classes and properties in the SDK have now been marked `internal`, because they're not supposed to be used in user code. This allows for a much better discoverability and Intellisense experience. Many classes have also been marked `sealed` to better indicate that no inheritance is needed.
 
