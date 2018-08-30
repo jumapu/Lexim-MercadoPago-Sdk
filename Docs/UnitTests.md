@@ -16,4 +16,4 @@ if you're using Visual Studio, you'll probably need to restart it once you've se
 
 ### Support 
 
-Write us at [developers.mercadopago.com](https://developers.mercadopago.com)
+Use the [issues](https://github.com/LeximSoluciones/dx-dotnet/issues) tab if you have any questions or find bugs.
