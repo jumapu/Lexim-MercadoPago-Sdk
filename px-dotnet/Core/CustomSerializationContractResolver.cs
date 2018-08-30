@@ -10,11 +10,15 @@ namespace MercadoPago
 {
     internal class CustomSerializationContractResolver : DefaultContractResolver
     {
-        protected override JsonProperty CreateProperty(MemberInfo member, MemberSerialization memberSerialization)
-        { 
-
-            var property = base.CreateProperty(member, memberSerialization);
+        public CustomSerializationContractResolver()
+        {
             NamingStrategy = new SnakeCaseNamingStrategy();
+        }
+
+        protected override JsonProperty CreateProperty(MemberInfo member, MemberSerialization memberSerialization)
+        {
+            var property = base.CreateProperty(member, memberSerialization);
+            
 
             property.ShouldSerialize = propInstance => property.Writable;
 
