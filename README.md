@@ -1,14 +1,17 @@
 
-# Mercado Pago SDK for .Net
+# Unofficial Mercado Pago SDK for .Net
 
+Build Status: 
 
-[![Build Status](https://travis-ci.org/mercadopago/px-dotnet.svg?branch=develop)](https://travis-ci.org/mercadopago/px-dotnet)
+[![Build Status](https://www.myget.org/BuildSource/Badge/lexim-public?identifier=dd150ea6-14cf-4fc5-ba55-ede6cbf073af)](https://www.myget.org/BuildSource/Badge/lexim-public?identifier=dd150ea6-14cf-4fc5-ba55-ede6cbf073af)
 
 
 This library provides developers with a simple set of bindings to the Mercado Pago API.
 
 ### .Net versions supported:
-.Net Framework 3.5 and above
+  
+  - .Net Framework 3.5 and above
+  - .Net Standard 2.0
 
 ## Installation 
 
@@ -16,15 +19,15 @@ This library provides developers with a simple set of bindings to the Mercado Pa
 
 **Using Package Manager**
 
-`PM> Install-Package mercadopago-sdk -Version 1.0.29`
+`PM> Install-Package Lexim.MercadoPago.Sdk`
 
 **Using .Net CLI**
 
-`> dotnet add package mercadopago-sdk --version 1.0.29`
+`> dotnet add package Lexim.MercadoPago.Sdk`
 
 **Using Paket CLI**
 
-`> paket add mercadopago-sdk --version 1.0.29`
+`> paket add Lexim.MercadoPago.Sdk`
 
 ## Quick Start
 
@@ -92,4 +95,4 @@ Console.WriteLine(payment.Errors.Message) // Print the error Message
 
 ### Support 
 
-Write us at [developers.mercadopago.com](https://developers.mercadopago.com)
+Use the [issues](https://github.com/LeximSoluciones/dx-dotnet/issues) tab if you have any questions or find bugs.
