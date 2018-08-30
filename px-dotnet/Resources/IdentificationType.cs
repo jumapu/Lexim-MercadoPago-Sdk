@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace MercadoPago.Resources
 {
-    public class IdentificationType : Resource<IdentificationType>
+    public sealed class IdentificationType : Resource<IdentificationType>
     {
         public static List<IdentificationType> GetAll(bool useCache = false) => GetList("/v1/identification_types", useCache);
 

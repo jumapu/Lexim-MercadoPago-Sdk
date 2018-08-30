@@ -15,7 +15,7 @@ namespace MercadoPago.Resources
     /// <summary>
     /// This service allows you to create, modify or read payments
     /// </summary>
-    public class Payment : Resource<Payment>
+    public sealed class Payment : Resource<Payment>
     {
         #region Actions
         /// <summary>
@@ -54,8 +54,10 @@ namespace MercadoPago.Resources
         /// </summary> 
         public Payment Refund()
         {
-            Refund refund = new Refund();
-            refund.manualSetPaymentId((decimal)this.Id);
+            var refund = new Refund
+            {
+                PaymentId = (decimal) this.Id
+            };
             refund.Save();
 
             if (refund.Id.HasValue)
@@ -74,9 +76,12 @@ namespace MercadoPago.Resources
         /// </summary> 
         public Payment Refund(decimal amount)
         {
-            Refund refund = new Refund();
-            refund.manualSetPaymentId((decimal)this.Id);
-            refund.Amount = amount;
+            var refund = new Refund
+            {
+                PaymentId = (decimal) this.Id,
+                Amount = amount
+            };
+
             refund.Save();
 
             if (refund.Id.HasValue)
