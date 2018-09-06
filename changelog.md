@@ -1,6 +1,11 @@
 # Lexim MercadoPago SDK - Change Log
 
-## 1.0.1 (Current)
+## 1.0.2 (Current)
+
+  - Merged lastest changes from official version. Introduces a new `PayerType` value: `anonymous`.
+  - Improved error message when TLS 1.2 is not enabled
+
+## 1.0.1
 
 ### Bug fixes:
 

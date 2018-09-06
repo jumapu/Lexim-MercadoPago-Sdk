@@ -1,5 +1,5 @@
 
-# Unofficial Mercado Pago SDK for .Net
+# Unofficial Mercado Pago SDK for .NET
 
 Build Status: 
 
@@ -12,7 +12,7 @@ It has several improvements currently not present in the official version:
 
   - [Bug fixes](https://github.com/LeximSoluciones/Lexim-MercadoPago-Sdk/blob/master/changelog.md#bug-fixes)
   - [Per-request Access-Token](https://github.com/LeximSoluciones/Lexim-MercadoPago-Sdk/blob/master/changelog.md#new-feature-per-request-access-token)
-  - [Better API interface](https://github.com/LeximSoluciones/Lexim-MercadoPago-Sdk/blob/master/changelog.md#better-api-interface)
+  - [Cleaner API surface](https://github.com/LeximSoluciones/Lexim-MercadoPago-Sdk/blob/master/changelog.md#cleaner-api-surface)
   - [LINQ Provider](https://github.com/LeximSoluciones/Lexim-MercadoPago-Sdk/blob/master/Docs/Linq.md)
 
 ### .NET versions supported:
