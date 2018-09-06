@@ -17,6 +17,17 @@ namespace MercadoPago
         public string ProxyHostName = null;
         public int ProxyPort = -1;
 
+        static MPRESTClient()
+        {
+            var v1 = Convert.ToUInt64((SecurityProtocolType)3072);
+            var v2 = Convert.ToUInt64(ServicePointManager.SecurityProtocol);
+
+            var hasFlag = (v2 & v1) == v1;
+
+            if (!hasFlag)
+                throw new NotSupportedException($"MercadoPago API requires TLS 1.2, which is not enabled on this machine. Please refer to https://www.mercadopago.com.ar/developers/es/guides/pci-compliant-merchants/disabling-tls-10 for details on how to fix this error.");
+        }
+
         #region Core Methods
         /// <summary>
         /// Class constructor.
