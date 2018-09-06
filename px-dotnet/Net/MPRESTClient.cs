@@ -79,11 +79,10 @@ namespace MercadoPago
             int connectionTimeout,
             int retries)
         {
-
-
-
-            MPRequest mpRequest = CreateRequest(httpMethod, path, payloadType, payload, colHeaders, connectionTimeout, retries);
-            string result = string.Empty;
+ 
+             
+                MPRequest mpRequest = CreateRequest(httpMethod, path, payloadType, payload, colHeaders, connectionTimeout, retries);
+                string result = string.Empty; 
 
             if ((httpMethod == HttpMethod.POST || httpMethod == HttpMethod.PUT) && mpRequest.RequestPayload != null)
             {

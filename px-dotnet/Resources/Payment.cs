@@ -21,7 +21,7 @@ namespace MercadoPago.Resources
         /// <summary>
         /// Find a payment through an unique identifier with Local Cache Flag
         /// </summary>
-        public static Payment FindById(int? id, bool useCache = false) => Get($"/v1/payments/{id}", useCache);
+        public static Payment FindById(long? id, bool useCache = false) => Get($"/v1/payments/{id}", useCache);
 
         /// <summary>
         /// Save a new payment
