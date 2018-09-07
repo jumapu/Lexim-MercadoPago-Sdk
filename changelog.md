@@ -1,6 +1,10 @@
 # Lexim MercadoPago SDK - Change Log
 
-## 1.0.2 (Current)
+## 1.0.3 (Current)
+
+  - Removed unneeded Nuget reference: Microsoft.Net.Compilers, which caused an incompatibility with .NET 4.0. Fixes https://github.com/LeximSoluciones/Lexim-MercadoPago-Sdk/issues/1
+
+## 1.0.2 
 
   - Merged lastest changes from official version. Introduces a new `PayerType` value: `anonymous`.
   - Improved error message when TLS 1.2 is not enabled
