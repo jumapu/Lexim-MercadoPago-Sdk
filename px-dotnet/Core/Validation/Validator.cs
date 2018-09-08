@@ -9,39 +9,6 @@ using static MercadoPago.Validation.ValidationError;
 
 namespace MercadoPago.Validation
 {
-    /// <summary>
-    ///Class that represents the validation results. 
-    /// </summary>
-    public class ValidationResult
-    {
-        public bool IsOk => !Errors.Any();
-
-        public List<ValidationError> Errors { get; }
-
-        public ValidationResult(IEnumerable<ValidationError> errors) => Errors = errors.ToList();
-    }
-
-    /// <summary>
-    /// Class that represents the Error contained in the ValidationResult class
-    /// </summary>
-    public class ValidationError
-    {
-        public const int OutOfRangeErrorCode   = 1001;
-        public const int RequiredErrorCode     = 1002;
-        public const int RegExpErrorCode       = 1003;
-        public const int DataTypeErrorCode     = 1004;
-        public const int StringLengthErrorCode = 1005;
-
-        public int Code { get; }
-        public string Message { get; }
-
-        internal ValidationError(int code, string message)
-        {
-            Code = code;
-            Message = message;
-        }
-    }
-
     internal static class Validator
     {
         internal static IEnumerable<ValidationError> GetValidationErrors(object instance)
@@ -53,8 +20,9 @@ namespace MercadoPago.Validation
                 from attr in property.GetCustomAttributes(typeof(ValidationAttribute), inherit: true)
                 let validation = (ValidationAttribute) attr
                 let propertyValue = property.GetValue(instance, BindingFlags.GetProperty, null, null, null)
-                where !validation.IsValid(propertyValue)
-                select GetValidationError(validation, property.Name);
+                let validationError = GetValidationError(instance, validation, property.Name, propertyValue)
+                where validationError != null
+                select validationError;
 
             foreach (var e in instanceErrors)
                 yield return e;
@@ -109,24 +77,34 @@ namespace MercadoPago.Validation
             }
         }
 
-        private static ValidationError GetValidationError(ValidationAttribute attribute, string propertyName)
+        private static ValidationError GetValidationError(object instance, ValidationAttribute attribute, string propertyName, object value)
         {
-            var msg = $"Error on property {propertyName}";
-
-            switch (attribute)
+            try
             {
-                case RangeAttribute r:
-                    return new ValidationError(OutOfRangeErrorCode, $"{msg}. The value you are trying to assign is not in the specified range: {r.Minimum}-{r.Maximum}.");
-                case RequiredAttribute _:
-                    return new ValidationError(RequiredErrorCode, $"{msg}. There is no value for this required property.");
-                case RegularExpressionAttribute a:
-                    return new ValidationError(RegExpErrorCode, $"{msg}. The specified value is not valid. RegExp: {a.Pattern}.");
-                case DataTypeAttribute _:
-                    return new ValidationError(DataTypeErrorCode, $"{msg}. The value you are trying to assign has not the correct type.");
-                case StringLengthAttribute _:
-                    return new ValidationError(StringLengthErrorCode, $"{msg}. The length of the string exceeds the maximum allowed length.");
-                default:
-                    throw new InvalidOperationException($"Unknown Validation Attribute Type: {attribute.GetType().Name}");
+                if (attribute.IsValid(value))
+                    return null;
+
+                var msg = $"Error on property {propertyName}";
+
+                switch (attribute)
+                {
+                    case RangeAttribute r:
+                        return new ValidationError(OutOfRangeErrorCode, $"{msg}. The value you are trying to assign is not in the specified range: {r.Minimum}-{r.Maximum}.");
+                    case RequiredAttribute _:
+                        return new ValidationError(RequiredErrorCode, $"{msg}. There is no value for this required property.");
+                    case RegularExpressionAttribute a:
+                        return new ValidationError(RegExpErrorCode, $"{msg}. The specified value is not valid. RegExp: {a.Pattern}.");
+                    case DataTypeAttribute _:
+                        return new ValidationError(DataTypeErrorCode, $"{msg}. The value you are trying to assign has not the correct type.");
+                    case StringLengthAttribute _:
+                        return new ValidationError(StringLengthErrorCode, $"{msg}. The length of the string exceeds the maximum allowed length.");
+                    default:
+                        throw new InvalidOperationException($"Unknown Validation Attribute Type: {attribute.GetType().Name}");
+                }
+            }
+            catch (Exception e)
+            {
+                throw new ValidationException(instance?.GetType().FullName, propertyName, e);
             }
         }
 

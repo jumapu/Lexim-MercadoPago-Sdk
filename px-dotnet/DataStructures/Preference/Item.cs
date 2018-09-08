@@ -36,8 +36,6 @@ namespace MercadoPago.DataStructures.Preference
         /// <summary>
         /// Item category ID
         /// </summary>
-        [StringLength(256)]
-        // TODO: [StringLength] on an int? Property???
         public int? CategoryId { get; set; }
 
         /// <summary>

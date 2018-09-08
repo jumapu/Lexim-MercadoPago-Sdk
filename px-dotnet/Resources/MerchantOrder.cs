@@ -25,13 +25,13 @@ namespace MercadoPago.Resources
 
         public string PreferenceId { get; set; }
 
-        public DateTime? DateCreated { get; }
+        public DateTime? DateCreated { get; private set; }
 
-        public DateTime? LastUpdate { get; }
+        public DateTime? LastUpdate { get; private set; }
 
         public string ApplicationId { get; set; }
 
-        public string Status { get; }
+        public string Status { get; private set; }
 
         public string SiteId { get; set; }
 
@@ -41,13 +41,13 @@ namespace MercadoPago.Resources
 
         public int? SponsorId { get; set; }
 
-        public List<MerchantOrderPayment> Payments { get; }
+        public List<MerchantOrderPayment> Payments { get; private set; }
 
-        public decimal? PaidAmount { get; }
+        public decimal? PaidAmount { get; private set; }
 
-        public decimal? RefundedAmount { get; }
+        public decimal? RefundedAmount { get; private set; }
 
-        public decimal? ShippingCost { get; }
+        public decimal? ShippingCost { get; private set; }
 
         public bool? Cancelled { get; set; }
 
@@ -67,7 +67,7 @@ namespace MercadoPago.Resources
         [StringLength(256)]
         public string Marketplace { get; set; }
 
-        public decimal? TotalAmount { get; }
+        public decimal? TotalAmount { get; private set; }
 
         #endregion
 

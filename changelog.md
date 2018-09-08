@@ -1,6 +1,14 @@
 # Lexim MercadoPago SDK - Change Log
 
-## 1.0.3 (Current)
+## 1.0.4 (Current)
+
+  - Removed incorrect `[StringLength]` validation attribute from property `int? MercadoPago.DataStructures.Preference.Item.CategoryId`. Fixes https://github.com/LeximSoluciones/Lexim-MercadoPago-Sdk/issues/3
+
+  - Changed all get-only properties from `MercadoPago.Resources.MerchantOrder` to get/private set. Fixes https://github.com/LeximSoluciones/Lexim-MercadoPago-Sdk/issues/2
+
+  - Reworked validation logic in `MercadoPago.Validation.Validator` for more clear exception messages when validation fails in an unexpected way.
+
+## 1.0.3
 
   - Removed unneeded Nuget reference: Microsoft.Net.Compilers, which caused an incompatibility with .NET 4.0. Fixes https://github.com/LeximSoluciones/Lexim-MercadoPago-Sdk/issues/1
 
