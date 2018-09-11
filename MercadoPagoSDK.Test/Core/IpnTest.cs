@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Text;
 using MercadoPago;
 using MercadoPago.DataStructures.Payment;
@@ -14,6 +15,12 @@ namespace MercadoPagoSDK.Test.Core
     [TestFixture]
     public class IpnTest
     {
+        [SetUp]
+        public void Init()
+        {
+            ServicePointManager.SecurityProtocol |= (SecurityProtocolType)3072;
+        }
+
         [Test]
         public void MPIPN_MustThrowNullException_BothParametersEmpty()
         {

@@ -19,6 +19,7 @@ namespace MercadoPagoSDK.Test.Resources
         {
             // Avoid SSL Cert error
             ServicePointManager.ServerCertificateValidationCallback = delegate { return true; };
+            ServicePointManager.SecurityProtocol |= (SecurityProtocolType)3072;
             // HardCoding Credentials
             AccessToken = Environment.GetEnvironmentVariable("ACCESS_TOKEN");
             PublicKey = Environment.GetEnvironmentVariable("PUBLIC_KEY");
@@ -30,7 +31,9 @@ namespace MercadoPagoSDK.Test.Resources
 
         [Test()]
         public void Card_CreateShouldBeOk()
-        { 
+        {
+            
+
             Customer customer = new Customer()
             {
                 Email = "temp.customer@gmail.com"

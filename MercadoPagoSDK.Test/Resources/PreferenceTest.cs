@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using MercadoPago.DataStructures.Preference;
 using System.Net;
+using MercadoPago.Common;
 using Newtonsoft.Json.Linq;
 
 namespace MercadoPagoSDK.Test.Resources
@@ -21,7 +22,8 @@ namespace MercadoPagoSDK.Test.Resources
         {
             // Avoid SSL Cert error
             ServicePointManager.ServerCertificateValidationCallback = delegate { return true; };
-            // Environment.GetEnvironmentVariable("ACCESS_TOKEN");  
+            ServicePointManager.SecurityProtocol |= (SecurityProtocolType)3072;
+            
             SDK.CleanConfiguration();
             SDK.SetBaseUrl("https://api.mercadopago.com");
             SDK.ClientId = Environment.GetEnvironmentVariable("CLIENT_ID");
@@ -31,12 +33,11 @@ namespace MercadoPagoSDK.Test.Resources
         [Test]
         public void Preference_CreateShouldBeOk() 
         {
-
             List<PaymentType> excludedPaymentTypes = new List<PaymentType>
             {
                 new PaymentType()
                 {
-                    Id = "ticket"
+                    Id = PaymentTypeId.ticket
                 }
             };
 

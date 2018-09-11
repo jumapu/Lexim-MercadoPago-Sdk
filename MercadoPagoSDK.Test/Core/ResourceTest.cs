@@ -20,6 +20,7 @@ namespace MercadoPagoSDK.Test
         {
             // Avoid SSL Cert error
             ServicePointManager.ServerCertificateValidationCallback = delegate { return true; };
+            ServicePointManager.SecurityProtocol |= (SecurityProtocolType)3072;
             // HardCoding Credentials
             SDK.CleanConfiguration();
             SDK.ClientId = Environment.GetEnvironmentVariable("CLIENT_ID");
@@ -268,15 +269,8 @@ namespace MercadoPagoSDK.Test
             resource.email = "fake@email.com";
 
             DummyClass result = new DummyClass();
-            try
-            {
-                result = resource.Save();
-            }
-            catch
-            {
-                Assert.Fail();
-                return;
-            }
+            
+            result = resource.Save();
 
             Assert.AreEqual("POST", result.LastApiResponse.HttpMethod);
 

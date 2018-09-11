@@ -27,7 +27,7 @@ namespace MercadoPago
 
             JObject jsonPayload = new JObject();
             jsonPayload.Add("grant_type", "client_credentials");
-            jsonPayload.Add("client_id", clientSecret);
+            jsonPayload.Add("client_id", clientId);
             jsonPayload.Add("client_secret", clientSecret);
 
             string access_token, refresh_token = null;
