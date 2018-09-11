@@ -106,6 +106,7 @@ namespace MercadoPago
 
         /// <summary>
         /// Initializes the configurations based in a confiiguration object.
+        /// Searches for the configuration keys: "ClientId, "ClientSecret", "AccessToken", and "AppId"
         /// </summary>
         /// <param name="config"></param>
         public static void SetConfiguration(Configuration config)
@@ -123,7 +124,7 @@ namespace MercadoPago
         /// Clean all the configuration variables
         /// (FOR TESTING PURPOSES ONLY)
         /// </summary>
-        public static void CleanConfiguration()
+        internal static void CleanConfiguration()
         {
             _clientSecret = null;
             _clientId = null;
@@ -136,7 +137,7 @@ namespace MercadoPago
         /// Changes base Url
         /// (FOR TESTING PURPOSES ONLY)
         /// </summary>
-        public static void SetBaseUrl(string baseUrl)
+        internal static void SetBaseUrl(string baseUrl)
         {
             BaseUrl = baseUrl;
         }
@@ -153,22 +154,30 @@ namespace MercadoPago
         }
 
         /// <summary>
-        /// Get the access token pointing to OAuth.
+        /// Authenticate with MercadoPago API, using SDK.ClientId and SDK.ClientSecret. The resulting token is stored in the SDK.AccessToken property.
         /// </summary>
         /// <returns>A valid access token.</returns>
         public static string GetAccessToken() 
         {
             if (string.IsNullOrEmpty(AccessToken))
             {
-                AccessToken = MPCredentials.GetAccessToken();
+                AccessToken = MPCredentials.GetAccessToken(ClientId, ClientSecret);
             }
             return AccessToken;
         }
 
         /// <summary>
+        /// Authenticate with MercadoPago API, using provided clientId and clientSecret.
+        /// </summary>
+        /// <returns>A valid access token.</returns>
+        public static string GetAccessToken(string clientId, string clientSecret) =>
+            MPCredentials.GetAccessToken(clientId, clientSecret);
+
+        /// <summary>
         /// Sets the access token.
         /// </summary>
         /// <param name="accessToken">Value of the access token.</param>
+        [Obsolete("Will be removed in future versions. Use the SDK.AccessToken property setter instead.")]
         public static void SetAccessToken(string accessToken)
         {
             if (!string.IsNullOrEmpty(AccessToken))

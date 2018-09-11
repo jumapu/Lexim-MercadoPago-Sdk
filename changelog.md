@@ -1,6 +1,11 @@
 # Lexim MercadoPago SDK - Change Log
 
-## 1.0.4 (Current)
+## 1.0.5 (Current)
+
+  - Implemented `SDK.GetAccessToken(string clientId, string clientSecret)` method, which enables the use of `UserAccessToken` for API calls that traditionally use ClientId and ClientSecret.
+  See [Usage example](https://github.com/LeximSoluciones/Lexim-MercadoPago-Sdk/blob/master/MercadoPagoExample/Payments/UserAccessTokenExample.cs) for details.
+
+## 1.0.4
 
   - Removed incorrect `[StringLength]` validation attribute from property `int? MercadoPago.DataStructures.Preference.Item.CategoryId`. Fixes https://github.com/LeximSoluciones/Lexim-MercadoPago-Sdk/issues/3
 

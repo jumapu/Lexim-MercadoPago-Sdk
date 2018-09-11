@@ -12,17 +12,23 @@ namespace MercadoPago
         /// Gets access token for current ClientId and ClientSecret
         /// </summary>
         /// <returns>Access token.</returns>
-        public static string GetAccessToken()
+        public static string GetAccessToken() => GetAccessToken(SDK.ClientId, SDK.ClientSecret);
+
+        /// <summary>
+        /// Gets access token for current ClientId and ClientSecret
+        /// </summary>
+        /// <returns>Access token.</returns>
+        public static string GetAccessToken(string clientId, string clientSecret)
         {
-            if (string.IsNullOrEmpty(SDK.ClientId) || string.IsNullOrEmpty(SDK.ClientSecret))
+            if (string.IsNullOrEmpty(clientId) || string.IsNullOrEmpty(clientSecret))
             {
                 throw new MPException("\"client_id\" and \"client_secret\" can not be \"null\" when getting the \"access_token\"");
             }
 
             JObject jsonPayload = new JObject();
             jsonPayload.Add("grant_type", "client_credentials");
-            jsonPayload.Add("client_id", SDK.ClientId);
-            jsonPayload.Add("client_secret", SDK.ClientSecret);
+            jsonPayload.Add("client_id", clientSecret);
+            jsonPayload.Add("client_secret", clientSecret);
 
             string access_token, refresh_token = null;
             MPAPIResponse response = new MPRESTClient().ExecuteRequest(
