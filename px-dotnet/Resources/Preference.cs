@@ -13,12 +13,12 @@ namespace MercadoPago.Resources
     public sealed class Preference: Resource<Preference>
     {
         #region Actions
-        
+
         /// <summary>
         /// Find a preference through an unique identifier with Local Cache Flag
         /// </summary>
-        public static Preference FindById(string id, bool useCache = false) => 
-            Get($"/checkout/preferences/{id}", useCache);
+        public static Preference FindById(string id, bool useCache = false, string accessToken = null) =>
+            Get($"/checkout/preferences/{id}", accessToken, useCache);
 
         /// <summary>
         /// Save a new preference

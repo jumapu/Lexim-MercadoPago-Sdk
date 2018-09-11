@@ -1,9 +1,14 @@
 # Lexim MercadoPago SDK - Change Log
 
-## 1.0.5 (Current)
+## 1.0.6 (Current)
+
+  - All static methods that perform requests against the MercadoPago API (for instance all `FindById()`, `Search()` and `Query()` methods) now have an `accessToken` parameter, which enables the use of that particular access token for that particular request.
+
+## 1.0.5
 
   - Implemented `SDK.GetAccessToken(string clientId, string clientSecret)` method, which enables the use of `UserAccessToken` for API calls that traditionally use ClientId and ClientSecret.
   See [Usage example](https://github.com/LeximSoluciones/Lexim-MercadoPago-Sdk/blob/master/MercadoPagoExample/Payments/UserAccessTokenExample.cs) for details.
+  - A critical bug was found in this version, hence it was unlisted from nuget.org.
 
 ## 1.0.4
 

@@ -8,7 +8,8 @@ namespace MercadoPago.Core.Linq
     internal class MpQueryable<T> : QueryableBase<T> where T: ResourceBase, new()
     {
         
-        public MpQueryable(string apiPath, bool useCache = false): base(QueryParser.CreateDefault(), new MpQueryExecutor<T>(apiPath, useCache))
+        public MpQueryable(string apiPath, string accessToken = null, bool useCache = false): 
+            base(QueryParser.CreateDefault(), new MpQueryExecutor<T>(apiPath, accessToken, useCache))
         {
         }
 

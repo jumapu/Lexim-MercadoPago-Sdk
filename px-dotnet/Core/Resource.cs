@@ -107,18 +107,18 @@ namespace MercadoPago
 
         #region New approach
 
-        internal static T Get(string path, bool useCache = false, int requestTimeout = 0, int retries = 1)
+        internal static T Get(string path, string accessToken = null, bool useCache = false, int requestTimeout = 0, int retries = 1)
         {
             var resource = new T();
-            var response = Invoke(HttpMethod.GET, path, PayloadType.NONE, null, null, null, useCache, requestTimeout, retries);
+            var response = Invoke(HttpMethod.GET, path, PayloadType.NONE, null, accessToken, null, useCache, requestTimeout, retries);
 
             ProcessResponse(resource, response, HttpMethod.GET);
             return resource;
         }
 
-        internal static List<T> GetList(string path, bool useCache = false, Dictionary<string, string> queryParameters = null, int requestTimeOut = 0, int retries = 1) 
+        internal static List<T> GetList(string path, string accessToken = null, bool useCache = false, Dictionary<string, string> queryParameters = null, int requestTimeOut = 0, int retries = 1) 
         {
-            var response = Invoke(HttpMethod.GET, path, PayloadType.NONE, null, null, queryParameters, useCache, requestTimeOut, retries);
+            var response = Invoke(HttpMethod.GET, path, PayloadType.NONE, null, accessToken, queryParameters, useCache, requestTimeOut, retries);
 
             if (response.StatusCode >= 200 && response.StatusCode < 300)
             {
@@ -137,8 +137,8 @@ namespace MercadoPago
             throw exception;
         }
 
-        internal static IQueryable<T> CreateQuery(string path, bool useCache = false) =>
-            new MpQueryable<T>(path, useCache);
+        internal static IQueryable<T> CreateQuery(string path, string accessToken = null, bool useCache = false) =>
+            new MpQueryable<T>(path, accessToken, useCache);
 
         internal T Post(string path, bool useCache = false, int requestTimeout = 0, int retries = 1) 
             => Send(this as T, HttpMethod.POST, path, useCache, requestTimeout, retries);

@@ -12,16 +12,17 @@ namespace MercadoPago.Resources
         /// <summary>
         /// Get all preapprovals acoording to specific filters
         /// </summary>
-        public static List<Preapproval> Search(Dictionary<string, string> filters, bool useCache = false) =>
-            GetList("/preapproval/search", useCache, filters);
+        public static List<Preapproval> Search(Dictionary<string, string> filters, bool useCache = false, string accessToken = null) =>
+            GetList("/preapproval/search", accessToken, useCache, filters);
 
-        public static IQueryable<Preapproval> Query(bool useCache = false) =>
-            CreateQuery("/preapproval/search", useCache);
+        public static IQueryable<Preapproval> Query(bool useCache = false, string accessToken = null) =>
+            CreateQuery("/preapproval/search", accessToken, useCache);
 
         /// <summary>
         /// Find a preapproval trought an unique identifier with Local Cache Flag
         /// </summary>
-        public static Preapproval FindById(string id, bool useCache = false) => Get($"/preapproval/{id}", useCache);
+        public static Preapproval FindById(string id, bool useCache = false, string accessToken = null) => 
+            Get($"/preapproval/{id}", accessToken, useCache);
 
         /// <summary>
         /// Save a new preapproval

@@ -5,7 +5,8 @@ namespace MercadoPago.Resources
 {
     public sealed class IdentificationType : Resource<IdentificationType>
     {
-        public static List<IdentificationType> GetAll(bool useCache = false) => GetList("/v1/identification_types", useCache);
+        public static List<IdentificationType> GetAll(bool useCache = false, string accessToken = null) => 
+            GetList("/v1/identification_types", accessToken, useCache);
 
         public string Id { get; set; }
 

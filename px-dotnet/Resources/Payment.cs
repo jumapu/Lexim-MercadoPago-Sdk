@@ -21,7 +21,8 @@ namespace MercadoPago.Resources
         /// <summary>
         /// Find a payment through an unique identifier with Local Cache Flag
         /// </summary>
-        public static Payment FindById(long? id, bool useCache = false) => Get($"/v1/payments/{id}", useCache);
+        public static Payment FindById(long? id, bool useCache = false, string accessToken = null) => 
+            Get($"/v1/payments/{id}", accessToken, useCache);
 
         /// <summary>
         /// Save a new payment
@@ -35,16 +36,16 @@ namespace MercadoPago.Resources
         /// <summary>
         /// Get all payments, with using cache option
         /// </summary>
-        public static List<Payment> All(bool useCache = false) => GetList("/v1/payments/search", useCache);
+        public static List<Payment> All(bool useCache = false, string accessToken = null) => GetList("/v1/payments/search", accessToken, useCache);
         
         /// <summary>
         /// Get all payments acoording to specific filters, with using cache option
         /// </summary>
-        public static List<Payment> Search(Dictionary<string, string> filters, bool useCache = false) => 
-            GetList("/v1/payments/search", useCache, filters);
+        public static List<Payment> Search(Dictionary<string, string> filters, bool useCache = false, string accessToken = null) => 
+            GetList("/v1/payments/search", accessToken, useCache, filters);
 
-        public static IQueryable<Payment> Query(bool useCache = false) =>
-            CreateQuery("/v1/payments/search", useCache);
+        public static IQueryable<Payment> Query(bool useCache = false, string accessToken = null) =>
+            CreateQuery("/v1/payments/search", accessToken, useCache);
 
         #endregion
 

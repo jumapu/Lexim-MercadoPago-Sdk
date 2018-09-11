@@ -7,7 +7,8 @@ namespace MercadoPago.Resources
     {
         #region Actions
 
-        public static Plan Load(string id, bool useCache = false) => Get($"/v1/plans/{id}", useCache);
+        public static Plan Load(string id, bool useCache = false, string accessToken = null) => 
+            Get($"/v1/plans/{id}", accessToken, useCache);
 
         public Plan Save() => Post("/v1/plans");
 

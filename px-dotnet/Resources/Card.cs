@@ -8,11 +8,11 @@ namespace MercadoPago.Resources
     {
         #region Actions 
        
-        public static List<Card> All(string customerId, bool useCache = false) => 
-            GetList($"/v1/customers/{customerId}/cards", useCache);
+        public static List<Card> All(string customerId, bool useCache = false, string accessToken = null) => 
+            GetList($"/v1/customers/{customerId}/cards", accessToken, useCache);
 
-        public static Card FindById(string customerId, string id, bool useCache = false) => 
-            Get($"/v1/customers/{customerId}/cards/{id}", useCache);
+        public static Card FindById(string customerId, string id, bool useCache = false, string accessToken = null) => 
+            Get($"/v1/customers/{customerId}/cards/{id}", accessToken, useCache);
 
         public Card Save() => Post($"/v1/customers/{CustomerId}/cards/");
 

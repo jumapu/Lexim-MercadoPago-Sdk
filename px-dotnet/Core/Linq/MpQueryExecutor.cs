@@ -8,11 +8,13 @@ namespace MercadoPago.Core.Linq
     internal class MpQueryExecutor<TResource> : IQueryExecutor where TResource: ResourceBase, new()
     {
         private readonly string _apiPath;
+        private readonly string _accessToken;
         private readonly bool _useCache;
 
-        public MpQueryExecutor(string apiPath, bool useCache = false)
+        public MpQueryExecutor(string apiPath, string accessToken = null, bool useCache = false)
         {
             _apiPath = apiPath;
+            _accessToken = accessToken;
             _useCache = useCache;
         }
 
@@ -24,7 +26,7 @@ namespace MercadoPago.Core.Linq
             var queryParameters = MpQueryModelVisitor.GetQueryParameters(queryModel);
 
             return 
-                Resource<TResource>.GetList(_apiPath, _useCache, queryParameters)
+                Resource<TResource>.GetList(_apiPath, _accessToken, _useCache, queryParameters)
                                    .Cast<T>();
         }
 

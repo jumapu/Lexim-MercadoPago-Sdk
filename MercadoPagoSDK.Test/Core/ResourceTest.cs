@@ -27,7 +27,7 @@ namespace MercadoPagoSDK.Test
             SDK.ClientSecret = Environment.GetEnvironmentVariable("CLIENT_SECRET");
         }
 
-        public static ResourceTest FindById(string id, bool useCache) => Get(null, useCache);
+        public static ResourceTest FindById(string id, bool useCache) => Get(null, null, useCache);
 
         public static List<ResourceTest> All() => GetList("/v1/identification_types");
         
@@ -77,7 +77,7 @@ namespace MercadoPagoSDK.Test
 
         public static DummyClass All() => Get(null);
 
-        public static DummyClass FindById(string id, bool useCache) => Get($"/anything/{id}", useCache);
+        public static DummyClass FindById(string id, bool useCache) => Get($"/anything/{id}", null, useCache);
 
         public DummyClass Save() => Post("/post");
 

@@ -12,8 +12,8 @@ namespace MercadoPago.Resources
         /// <summary>
         /// Get All Payment Methods available
         /// </summary>
-        public static List<PaymentMethod> All(bool useCache = false) =>
-            GetList($"/v1/payment_methods", useCache);
+        public static List<PaymentMethod> All(bool useCache = false, string accessToken = null) =>
+            GetList($"/v1/payment_methods", accessToken, useCache);
 
         #endregion
 

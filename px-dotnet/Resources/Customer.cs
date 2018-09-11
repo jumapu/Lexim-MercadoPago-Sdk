@@ -14,19 +14,20 @@ namespace MercadoPago
         /// <summary>
         /// Get all customers acoording to specific filters
         /// </summary>
-        public static List<Customer> Search(Dictionary<string, string> filters, bool useCache = false) => 
-            GetList("/v1/customers/search", useCache, filters);
+        public static List<Customer> Search(Dictionary<string, string> filters, bool useCache = false, string accessToken = null) => 
+            GetList("/v1/customers/search", accessToken, useCache, filters);
 
-        public static IQueryable<Customer> Query(bool useCache = false) =>
-            CreateQuery("/v1/customers/search", useCache);
+        public static IQueryable<Customer> Query(bool useCache = false, string accessToken = null) =>
+            CreateQuery("/v1/customers/search", accessToken, useCache);
 
         /// <summary>
         /// Find a customer by ID.
         /// </summary>
         /// <param name="id">Customer ID.</param>
         /// <param name="useCache">Cache configuration.</param>
+        /// <param name="accessToken">OAuth Access Token (specific to this request).</param>
         /// <returns>Searched customer.</returns>
-        public static Customer FindById(string id, bool useCache = false) => Get($"/v1/customers/{id}", useCache);
+        public static Customer FindById(string id, bool useCache = false, string accessToken = null) => Get($"/v1/customers/{id}", accessToken, useCache);
 
         /// <summary>
         /// Save a new customer
