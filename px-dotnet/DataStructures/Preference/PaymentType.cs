@@ -12,7 +12,7 @@ namespace MercadoPago.DataStructures.Preference
         /// Payment method data_type ID
         /// </summary>
         [JsonConverter(typeof(StringEnumConverter))]
-        public PaymentTypeId Id { get; set; }
+        public PaymentTypeId? Id { get; set; }
 
         public static readonly PaymentType AccountMoney = new PaymentType {Id = PaymentTypeId.account_money };
         public static readonly PaymentType Ticket = new PaymentType { Id = PaymentTypeId.ticket };
@@ -20,5 +20,6 @@ namespace MercadoPago.DataStructures.Preference
         public static readonly PaymentType ATM = new PaymentType { Id = PaymentTypeId.atm };
         public static readonly PaymentType CreditCard = new PaymentType { Id = PaymentTypeId.credit_card };
         public static readonly PaymentType DebitCard = new PaymentType { Id = PaymentTypeId.debit_card };
+        public static readonly PaymentType PrepaidCard = new PaymentType { Id = PaymentTypeId.prepaid_card };
     }
 }
