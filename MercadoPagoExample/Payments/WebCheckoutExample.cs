@@ -1,7 +1,9 @@
-﻿using System.Diagnostics;
+﻿using System.Collections.Generic;
+using System.Diagnostics;
 using MercadoPago.Common;
 using MercadoPago.DataStructures.Preference;
 using MercadoPago.Resources;
+using PaymentMethod = MercadoPago.DataStructures.Preference.PaymentMethod;
 
 namespace MercadoPagoExample.Payments
 {
@@ -28,6 +30,14 @@ namespace MercadoPagoExample.Payments
                 Payer = new Payer
                 {
                     Email = "augustus_mckenzie@gmail.com"
+                },
+                PaymentMethods = new PaymentMethods
+                {
+                    ExcludedPaymentTypes = new List<PaymentType>
+                    {
+                        PaymentType.Ticket,
+                        PaymentType.ATM
+                    },
                 }
             };
             
