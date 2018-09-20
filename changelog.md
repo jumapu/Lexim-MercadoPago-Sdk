@@ -1,6 +1,10 @@
 # Lexim MercadoPago SDK - Change Log
 
-## 1.0.6 (Current)
+## 1.0.7 (Current)
+  - Merged [latest changes](https://github.com/mercadopago/dx-dotnet/tree/7c4bc0eb493b00cd69b7dcdf0a1efb7c360b80fa) from official SDK.
+  - `PaymentType.Id` is now nullable. Fixes [#4](https://github.com/LeximSoluciones/Lexim-MercadoPago-Sdk/issues/4) 
+
+## 1.0.6
 
   - All static methods that perform requests against the MercadoPago API (for instance all `FindById()`, `Search()` and `Query()` methods) now have an `accessToken` parameter, which enables the use of that particular access token for that particular request.
 
