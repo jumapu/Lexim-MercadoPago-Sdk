@@ -36,6 +36,8 @@ namespace MercadoPago
                         onMerchantOrderReceived(merchantOrder);
                     }
                     break;
+                default:
+                    throw new MPException($"IPN Notification with topic '{topic}' cannot be handled. Please create an issue at https://github.com/LeximSoluciones/Lexim-MercadoPago-Sdk/issues if you use this notification type.");
             }
         }
     }
