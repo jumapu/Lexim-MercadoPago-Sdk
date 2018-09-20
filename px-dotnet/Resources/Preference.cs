@@ -10,6 +10,10 @@ using Newtonsoft.Json.Converters;
 
 namespace MercadoPago.Resources
 {
+    /// <summary>
+    /// This API allows you to set up, during the payment process, 
+    /// all the item information, any accepted means of payment and many other options.
+    /// </summary>
     public sealed class Preference: Resource<Preference>
     {
         #region Actions
@@ -33,10 +37,6 @@ namespace MercadoPago.Resources
         #endregion
 
         #region Properties
-        /// <summary>
-        /// Items information
-        /// </summary>
-        public List<Item> Items { get; set; } = new List<Item>();
 
         /// <summary>
         /// Buyer Information
@@ -148,6 +148,8 @@ namespace MercadoPago.Resources
         /// Differential pricing configuration for this preference
         /// </summary>
         public DifferentialPricing? Differential_pricing { get; set; }
+
+        public List<Item> Items { get; set; } = new List<Item>();
 
         #endregion
     }
