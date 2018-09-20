@@ -8,6 +8,9 @@ namespace MercadoPago.Common
         /// <summary> Decommissioned, we don't support it anymore </summary>
         deactive,
         /// <summary> Unavailable for use, possible interruption of the service </summary>
-        temporally_deactive
+        temporally_deactive,
+
+        /// <summary> Added for compatibility with the MercadoPago API which returns test values in the Production environment :S </summary>
+        testing,
     }
 }
