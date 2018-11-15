@@ -113,6 +113,7 @@ namespace MercadoPagoSDK.Test.Resources
              
             LastPayment = payment;
  
+ 
             Assert.IsTrue(payment.Id.HasValue, "Failed: Payment could not be successfully created");
             Assert.IsTrue(payment.Id.Value > 0, "Failed: Payment has not a valid id"); 
         }
@@ -172,8 +173,7 @@ namespace MercadoPagoSDK.Test.Resources
                 }
             };
 
-            OtherPayment.Save(); 
-
+            OtherPayment.Save();
             OtherPayment.Refund(); 
 
             Assert.AreEqual(PaymentStatus.refunded, OtherPayment.Status, "Failed: Payment could not be successfully refunded");

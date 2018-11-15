@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using Newtonsoft.Json.Converters;
 using MercadoPago.DataStructures.Generic;
 using System.Linq;
+using Newtonsoft.Json.Serialization;
 
 namespace MercadoPago
 {

@@ -51,8 +51,7 @@ namespace MercadoPago.Resources
         /// <summary>
         /// Shipments information
         /// </summary>
-        public Shipment? Shipment { get; set; }
-
+        public Shipment? Shipments { get; set; }
         /// <summary>
         /// URLs to return to the sellers website
         /// </summary>
@@ -150,6 +149,49 @@ namespace MercadoPago.Resources
         public DifferentialPricing? Differential_pricing { get; set; }
 
         public List<Item> Items { get; set; } = new List<Item>();
+
+        public string SponsorId
+        {
+            get
+            {
+                return _sponsor_id;
+            }
+
+            set
+            {
+                _sponsor_id = value;
+            }
+        }
+
+        public List<ProcessingMode> ProcessingModes
+        {
+            get
+            {
+                if (_processing_modes == null)
+                {
+                    _processing_modes = new List<ProcessingMode>();
+                }
+                return _processing_modes;
+            }
+
+            set
+            {
+                _processing_modes = value;
+            }
+        }
+
+        public bool? BinaryMode
+        {
+            get
+            {
+                return _binary_mode;
+            }
+
+            set
+            {
+                _binary_mode = value;
+            }
+        }
 
         #endregion
     }

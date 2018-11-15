@@ -1,6 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-  <Import Project="..\packages\Microsoft.Net.Compilers.2.8.2\build\Microsoft.Net.Compilers.props" Condition="Exists('..\packages\Microsoft.Net.Compilers.2.8.2\build\Microsoft.Net.Compilers.props')" />
   <Import Project="..\packages\NUnit.3.10.1\build\NUnit.props" Condition="Exists('..\packages\NUnit.3.10.1\build\NUnit.props')" />
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
@@ -9,10 +8,7 @@
     <OutputType>Library</OutputType>
     <RootNamespace>MercadoPagoSDK.Test</RootNamespace>
     <AssemblyName>MercadoPagoSDK.Test</AssemblyName>
-    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
     <TargetFrameworkProfile />
-    <NuGetPackageImportStamp>
-    </NuGetPackageImportStamp>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -35,15 +31,15 @@
     <Reference Include="System.Configuration" />
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="Newtonsoft.Json">
-      <HintPath>..\packages\Newtonsoft.Json.11.0.2\lib\net35\Newtonsoft.Json.dll</HintPath>
+      <HintPath>..\packages\Newtonsoft.Json.11.0.2\lib\net40\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="nunit.framework">
-      <HintPath>..\packages\NUnit.3.10.1\lib\net35\nunit.framework.dll</HintPath>
+      <HintPath>..\packages\NUnit.3.10.1\lib\net40\nunit.framework.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Core\IpnTest.cs" />
-    <Compile Include="Core\ResourceTest.cs" />
+    <Compile Include="Core\MPBaseTest.cs" />
+    <Compile Include="Core\MPIPNTest.cs" />
     <Compile Include="FullIntegrationTest.cs" />
     <Compile Include="MPConfTest.cs" />
     <Compile Include="Exceptions\MPExceptionTest.cs" />
@@ -56,9 +52,6 @@
     <Compile Include="Resources\PreapprovalTest.cs" />
     <Compile Include="Resources\PreferenceTest.cs" />
     <Compile Include="Resources\PaymentMethodTest.cs" />
-    <Compile Include="Validator\EnumerableValidationTest.cs" />
-    <Compile Include="Validator\NestedValidationTest.cs" />
-    <Compile Include="Validator\ValidationTest.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\px-dotnet\MercadoPagoSDK.csproj">
@@ -67,9 +60,6 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <None Include="app.config">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
     <None Include="Data\MPConf_invalid_App.config">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
@@ -81,14 +71,5 @@
   <ItemGroup>
     <Service Include="{82A7F48D-3B50-4B1E-B82E-3ADA8210C358}" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="MercadoPagoSDK\" />
-  </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
-  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
-    <PropertyGroup>
-      <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
-    </PropertyGroup>
-    <Error Condition="!Exists('..\packages\Microsoft.Net.Compilers.2.8.2\build\Microsoft.Net.Compilers.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.Net.Compilers.2.8.2\build\Microsoft.Net.Compilers.props'))" />
-  </Target>
 </Project>

@@ -1,6 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-  <Import Project="..\packages\Microsoft.Net.Compilers.2.8.2\build\Microsoft.Net.Compilers.props" Condition="Exists('..\packages\Microsoft.Net.Compilers.2.8.2\build\Microsoft.Net.Compilers.props')" />
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
@@ -9,8 +8,6 @@
     <RootNamespace>MercadoPagoExample</RootNamespace>
     <AssemblyName>MercadoPagoExample</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
-    <NuGetPackageImportStamp>
-    </NuGetPackageImportStamp>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -34,19 +31,16 @@
     <Reference Include="System.Configuration" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Payments\IpnExample.cs" />
-    <Compile Include="Payments\PaymentSearchExample.cs" />
-    <Compile Include="Payments\SavedCardsExample.cs" />
-    <Compile Include="Payments\UserAccessTokenExample.cs" />
-    <Compile Include="Payments\WebCheckoutExample.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Payments\ApiPaymentExample.cs" />
+    <Compile Include="API\Payments.cs" />
     <Compile Include="Utils.cs" />
+    <Compile Include="WebCheckout\Preferences.cs" />
+    <Compile Include="IExample.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
-    <None Include="packages.config" />
+    <None Include=".gitignore" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\px-dotnet\MercadoPagoSDK.csproj">
@@ -54,11 +48,8 @@
       <Name>MercadoPagoSDK</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup>
+    <Folder Include="WebCheckout\" />
+  </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
-  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
-    <PropertyGroup>
-      <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
-    </PropertyGroup>
-    <Error Condition="!Exists('..\packages\Microsoft.Net.Compilers.2.8.2\build\Microsoft.Net.Compilers.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.Net.Compilers.2.8.2\build\Microsoft.Net.Compilers.props'))" />
-  </Target>
 </Project>
