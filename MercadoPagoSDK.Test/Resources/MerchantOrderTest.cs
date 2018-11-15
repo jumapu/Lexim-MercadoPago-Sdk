@@ -1,6 +1,6 @@
 ﻿using MercadoPago;
 using MercadoPago.Resources;
-using MercadoPago.Resources.DataStructures.MerchantOrder;
+using MercadoPago.DataStructures.MerchantOrder;
 using NUnit.Framework;
 using System;
 using System.Collections.Generic;
@@ -106,7 +106,7 @@ namespace MercadoPagoSDK.Test.Resources
             config.Add("clientId", Environment.GetEnvironmentVariable("CLIENT_ID"));
             SDK.SetConfiguration(config);
 
-            MerchantOrder merchantOrderInternal = new MerchantOrder() { ID = "1" };
+            MerchantOrder merchantOrderInternal = new MerchantOrder() { Id = "1" };
 
             try
             {
@@ -123,9 +123,9 @@ namespace MercadoPagoSDK.Test.Resources
         [Test()]
         public void MerchantOrder_UpdateShouldRaiseException()
         {
-            MerchantOrder merchantOrderInternal = new MerchantOrder() { ID = "1" };
+            MerchantOrder merchantOrderInternal = new MerchantOrder() { Id = "1" };
 
-            merchantOrderInternal.ID = "2";
+            merchantOrderInternal.Id = "2";
 
             try
             {

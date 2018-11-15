@@ -32,7 +32,7 @@ namespace MercadoPagoSDK.Test.Validations
         }
 
         private ValidationError GetValidationError(object instance, int errorCode) =>
-            Validator.GetValidationErrors(instance)
+            MercadoPago.Validation.Validator.GetValidationErrors(instance)
                      .FirstOrDefault(x => x.Code == errorCode);
 
         [Test]

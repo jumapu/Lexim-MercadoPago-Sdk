@@ -1,5 +1,4 @@
-﻿using System.ComponentModel.DataAnnotations;
-using System.Linq;
+﻿using System.Linq;
 using MercadoPago;
 using MercadoPago.DataStructures.Preference;
 using MercadoPago.Validation;
@@ -10,7 +9,7 @@ namespace MercadoPagoSDK.Test.Validations
     [TestFixture]
     public class NestedValidationTest: ResourceBase
     {
-        [Required]
+        [System.ComponentModel.DataAnnotations.Required]
         public Payer? Payer { get; set; }
 
         [Test]

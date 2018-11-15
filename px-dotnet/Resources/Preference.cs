@@ -150,48 +150,12 @@ namespace MercadoPago.Resources
 
         public List<Item> Items { get; set; } = new List<Item>();
 
-        public string SponsorId
-        {
-            get
-            {
-                return _sponsor_id;
-            }
+        public string SponsorId { get; set; }
 
-            set
-            {
-                _sponsor_id = value;
-            }
-        }
+        public List<ProcessingMode> ProcessingModes { get; set; } = new List<ProcessingMode>();
 
-        public List<ProcessingMode> ProcessingModes
-        {
-            get
-            {
-                if (_processing_modes == null)
-                {
-                    _processing_modes = new List<ProcessingMode>();
-                }
-                return _processing_modes;
-            }
-
-            set
-            {
-                _processing_modes = value;
-            }
-        }
-
-        public bool? BinaryMode
-        {
-            get
-            {
-                return _binary_mode;
-            }
-
-            set
-            {
-                _binary_mode = value;
-            }
-        }
+        public bool? BinaryMode { get; set; }
+        
 
         #endregion
     }

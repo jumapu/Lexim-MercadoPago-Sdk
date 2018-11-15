@@ -7,8 +7,6 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MercadoPagoSDK", "px-dotnet
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MercadoPagoSDK.Test", "MercadoPagoSDK.Test\MercadoPagoSDK.Test.csproj", "{8E0E8C0D-3015-4978-9CCC-E7AA401ED183}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MercadoPagoExample", "MercadoPagoExample\MercadoPagoExample.csproj", "{A3547A6B-2AF0-43A0-90FC-5475321E72F8}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -23,10 +21,6 @@ Global
 		{8E0E8C0D-3015-4978-9CCC-E7AA401ED183}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8E0E8C0D-3015-4978-9CCC-E7AA401ED183}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8E0E8C0D-3015-4978-9CCC-E7AA401ED183}.Release|Any CPU.Build.0 = Release|Any CPU
-		{A3547A6B-2AF0-43A0-90FC-5475321E72F8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{A3547A6B-2AF0-43A0-90FC-5475321E72F8}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{A3547A6B-2AF0-43A0-90FC-5475321E72F8}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{A3547A6B-2AF0-43A0-90FC-5475321E72F8}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

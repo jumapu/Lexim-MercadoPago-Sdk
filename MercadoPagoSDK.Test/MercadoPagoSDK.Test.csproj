@@ -38,20 +38,24 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Core\MPBaseTest.cs" />
-    <Compile Include="Core\MPIPNTest.cs" />
+    <Compile Include="Core\IpnTest.cs" />
+    <Compile Include="Core\ResourceTest.cs" />
     <Compile Include="FullIntegrationTest.cs" />
     <Compile Include="MPConfTest.cs" />
     <Compile Include="Exceptions\MPExceptionTest.cs" />
     <Compile Include="Net\MPRESTClientTest.cs" />
     <Compile Include="Resources\CardTest.cs" />
     <Compile Include="Resources\CustomerTest.cs" />
+    <Compile Include="Resources\MerchantOrderTest.cs" />
     <Compile Include="Resources\PaymentTest.cs" />
     <Compile Include="Helpers\Authentication.cs" />
     <Compile Include="Helpers\CardHelper.cs" />
     <Compile Include="Resources\PreapprovalTest.cs" />
     <Compile Include="Resources\PreferenceTest.cs" />
     <Compile Include="Resources\PaymentMethodTest.cs" />
+    <Compile Include="Validator\EnumerableValidationTest.cs" />
+    <Compile Include="Validator\NestedValidationTest.cs" />
+    <Compile Include="Validator\ValidationTest.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\px-dotnet\MercadoPagoSDK.csproj">
@@ -60,6 +64,7 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <None Include="app.config" />
     <None Include="Data\MPConf_invalid_App.config">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
