@@ -4,7 +4,7 @@ using MercadoPago.Resources;
 
 namespace MercadoPagoSDK.Samples
 {
-    internal class IpnExample: ISample
+    internal class IpnExample: ISample, IRequiresAccessToken
     {
         public string Name => "IPN Notification Handling";
 

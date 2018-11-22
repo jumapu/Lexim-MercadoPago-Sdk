@@ -7,18 +7,30 @@ using System.IO;
 using System.Linq;
 using System.Net;
 using System.Text;
-using System.Collections.Specialized;
 
 namespace MercadoPago
 {
     internal class MPRESTClient
     {
+        /// <summary>
+        /// class to simulate HttpClient class, available from .NET 4.0 onward.
+        /// </summary>
+        private class MPRequest
+        {
+
+            public HttpWebRequest Request { get; set; }
+            public byte[] RequestPayload { get; set; }
+
+        }
+
 
         public string ProxyHostName = null;
         public int ProxyPort = -1;
 
         static MPRESTClient()
         {
+            ServicePointManager.SecurityProtocol |= (SecurityProtocolType)3072;
+
             var v1 = Convert.ToUInt64((SecurityProtocolType)3072);
             var v2 = Convert.ToUInt64(ServicePointManager.SecurityProtocol);
 
@@ -55,23 +67,32 @@ namespace MercadoPago
         /// <param name="path">Endpoint we are pointing.</param>
         /// <param name="payloadType">Type of payload we are sending along with the request.</param>
         /// <param name="payload">The data we are sending.</param>
-        /// <param name="colHeaders">Extra headers to send with the request.</param>
+        /// <param name="includeHeaders">Extra headers to send with the request.</param>
         /// <returns>Api response with the result of the call.</returns>
         public MPAPIResponse ExecuteRequest(
             HttpMethod httpMethod,
             string path,
             PayloadType payloadType,
             JObject payload,
-            WebHeaderCollection colHeaders,
+            bool includeHeaders,
             int requestTimeout,
             int retries)
         {
 
-            System.Diagnostics.Trace.WriteLine("Payload " + httpMethod + " request to " + path + " : " + payload); 
- 
+            System.Diagnostics.Trace.WriteLine("Payload " + httpMethod + " request to " + path + " : " + payload);
+
+            var headers =
+                includeHeaders
+                    ? new WebHeaderCollection
+                    {
+                        "HTTP.CONTENT_TYPE: application/json",
+                        "HTTP.USER_AGENT: MercadoPago .NET SDK v1.0.1"
+                    }
+                    : null;
+
             try
             {
-                return ExecuteRequestCore(httpMethod, path, payloadType, payload, colHeaders, requestTimeout, retries);
+                return ExecuteRequestCore(httpMethod, path, payloadType, payload, headers, requestTimeout, retries);
             }
             catch (Exception ex)
             {
@@ -83,7 +104,7 @@ namespace MercadoPago
         /// Core module implementation. Execute a request to an endpoint.
         /// </summary>
         /// <returns>Api response with the result of the call.</returns>
-        public MPAPIResponse ExecuteRequestCore(
+        internal MPAPIResponse ExecuteRequestCore(
             HttpMethod httpMethod,
             string path,
             PayloadType payloadType,
@@ -92,9 +113,9 @@ namespace MercadoPago
             int connectionTimeout,
             int retries)
         {
-             
-                MPRequest mpRequest = CreateRequest(httpMethod, path, payloadType, payload, colHeaders, connectionTimeout, retries);
-                string result = string.Empty; 
+
+            MPRequest mpRequest = CreateRequest(httpMethod, path, payloadType, payload, colHeaders, connectionTimeout, retries);
+            string result = string.Empty;
 
             if ((httpMethod == HttpMethod.POST || httpMethod == HttpMethod.PUT) && mpRequest.RequestPayload != null)
             {
@@ -126,16 +147,13 @@ namespace MercadoPago
                 }
 
             }
-
-
-
         }
 
         /// <summary>
         /// Create a request to use in the call to a certain endpoint.
         /// </summary>
         /// <returns>Api response with the result of the call.</returns>
-        public MPRequest CreateRequest(HttpMethod httpMethod,
+        private MPRequest CreateRequest(HttpMethod httpMethod,
             string path,
             PayloadType payloadType,
             JObject payload,

@@ -36,7 +36,7 @@ namespace MercadoPago
                     SDK.BaseUrl + "/oauth/token",
                     PayloadType.X_WWW_FORM_URLENCODED,
                     jsonPayload,
-                    null, 
+                    false, 
                     0, 
                     0);
 
@@ -89,7 +89,7 @@ namespace MercadoPago
                     SDK.BaseUrl + "/oauth/token",
                     PayloadType.X_WWW_FORM_URLENCODED,
                     jsonPayload,
-                    null,
+                    false,
                     0,
                     0);
 

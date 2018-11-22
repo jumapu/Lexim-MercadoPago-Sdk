@@ -11,7 +11,7 @@ using Newtonsoft.Json.Linq;
 
 namespace MercadoPago
 {
-    public abstract class ResourceBase
+    public abstract partial class ResourceBase
     {
         // prevent derived classes outside this assembly.
         internal ResourceBase()
@@ -47,14 +47,6 @@ namespace MercadoPago
         {
             path = CreatePath(path, accessToken, queryParameters);
 
-            //TODO: Esto es un concern de la capa HTTP, deberia estar en el MPRestClient.
-            //TODO: Se mantiene por el momento por compatibilidad con la clase MPBase.
-            var headers = new WebHeaderCollection
-            {
-                "HTTP.CONTENT_TYPE: application/json",
-                "HTTP.USER_AGENT: MercadoPago .NET SDK v1.0.1"
-            };
-
             string cacheKey = httpMethod.ToString() + "_" + path;
             MPAPIResponse response = null;
 
@@ -75,7 +67,7 @@ namespace MercadoPago
                     path,
                     payloadType,
                     payload,
-                    headers,
+                    true,
                     requestTimeout,
                     retries);
 

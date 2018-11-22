@@ -14,10 +14,8 @@ namespace MercadoPago
 
         public string HttpMethod { get; protected set; }
         public string Url { get; protected set; }
-        public HttpWebRequest Request { get; protected set; }
         public string Payload { get; protected set; }
-        public HttpWebResponse Response { get; protected set; }
-
+        
         public int StatusCode { get; protected set; }
         public string StatusDescription { get; protected set; }
 
@@ -35,9 +33,6 @@ namespace MercadoPago
         /// </summary>
         public MPAPIResponse(HttpMethod httpMethod, HttpWebRequest request, JObject payload, HttpWebResponse response)
         {
-            this.Request = request;
-            this.Response = response;
-
             ParseRequest(httpMethod, request, payload);
             ParseResponse(response);
 

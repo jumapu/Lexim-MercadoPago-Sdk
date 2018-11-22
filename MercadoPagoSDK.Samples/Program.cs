@@ -36,10 +36,7 @@ namespace MercadoPagoSDK.Samples
                         return;
                     case string x when int.TryParse(x, out var option) && Samples.ContainsKey(option):
                         var sample = Samples[option];
-                        Console.Clear();
-                        Console.WriteLine(sample.Name);
-                        Console.WriteLine();
-                        sample.Run();
+                        RunSample(sample);
                         break;
                     default:
                         Console.WriteLine($"Invalid Option.");
@@ -73,6 +70,28 @@ namespace MercadoPagoSDK.Samples
 
             Console.WriteLine();
             Console.WriteLine($"• Q - Exit");
+        }
+
+        private static void RunSample(ISample sample)
+        {
+            Console.Clear();
+            Console.WriteLine(sample.Name);
+            Console.WriteLine();
+
+            switch (sample)
+            {
+                case IRequiresAccessToken _:
+                    Utils.LoadOrPromptAccessToken();
+                    break;
+                case IRequiresClientCredentials _:
+                    Utils.LoadOrPromptClientCredentials();
+                    break;
+            }
+
+            Console.WriteLine();
+            Console.WriteLine($"Running Sample: {sample.Name}");
+
+            sample.Run();
         }
     }
 }

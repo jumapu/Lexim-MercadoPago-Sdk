@@ -1,21 +1,35 @@
-﻿using System;
+﻿using System.Diagnostics;
+using MercadoPago;
 using MercadoPago.Common;
 using MercadoPago.DataStructures.Preference;
 using MercadoPago.Resources;
 
 namespace MercadoPagoSDK.Samples
 {
-    internal class WebCheckout : ISample, IRequiresClientCredentials
+    internal class UserAccessToken2 : ISample
     {
-        public string Name => "WebCheckout Example";
+        public string Name => "Per-Request Access Token #2";
 
         public string Category => "Checkout";
 
         public void Run()
         {
-            // Create a preference object
+            /*
+           // --------------------------------------- \\
+           || Example #2: Using ClientId/ClientSecret ||
+           \\ --------------------------------------- //
+           */
+
+            // if you have a merchant-specific ClientId/ClientSecret, you need to call this method first to obtain the AccessToken:
+            var clientId = Utils.Prompt("Enter Client Id: ");
+            var clientSecret = Utils.Prompt("Enter Client Secret: ");
+
+            var accessToken = SDK.GetAccessToken(clientId, clientSecret);
+
             var preference = new Preference
             {
+                // Then use the Access Token obtained above
+                UserAccessToken = accessToken,
                 Items =
                 {
                     new Item
@@ -32,14 +46,11 @@ namespace MercadoPagoSDK.Samples
                     Email = "augustus_mckenzie@gmail.com"
                 }
             };
-            
+
             // Save and posting preference
             preference.Save();
 
-            Console.WriteLine(preference.Id);
-            Console.WriteLine(preference.InitPoint);
-
-            Console.ReadLine();
+            Process.Start(preference.InitPoint);
         }
     }
 }

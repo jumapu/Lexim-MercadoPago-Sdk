@@ -3,7 +3,7 @@ using MercadoPago.Resources;
 
 namespace MercadoPagoSDK.Samples
 {
-    internal class Payments : ISample 
+    internal class Payments : ISample, IRequiresAccessToken
     {
         public string Name => "Payments with API";
 
