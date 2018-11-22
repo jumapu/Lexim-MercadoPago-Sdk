@@ -35,11 +35,10 @@ namespace MercadoPago.DataStructures.Payment
         /// <summary>
         /// Item's quantity
         /// </summary>
-        public int Quantity { get; set; }
-
+        public int? Quantity { get; set; }
         /// <summary>
         /// Unit price
         /// </summary>
-        public int UnitPrice { get; set; }
+        public decimal? UnitPrice { get; set; } 
     }
 }
