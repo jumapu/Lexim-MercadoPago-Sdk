@@ -10,10 +10,12 @@ This is an unofficial version of the [MercadoPago SDK for .NET](https://github.c
 
 It has several improvements currently not present in the official version:
 
+  - .NET Standard 2.0 support
   - [Bug fixes](https://github.com/LeximSoluciones/Lexim-MercadoPago-Sdk/blob/master/changelog.md#bug-fixes)
   - [Per-request Access-Token](https://github.com/LeximSoluciones/Lexim-MercadoPago-Sdk/blob/master/changelog.md#new-feature-per-request-access-token)
   - [Cleaner API surface](https://github.com/LeximSoluciones/Lexim-MercadoPago-Sdk/blob/master/changelog.md#cleaner-api-surface)
   - [LINQ Provider](https://github.com/LeximSoluciones/Lexim-MercadoPago-Sdk/blob/master/Docs/Linq.md)
+  - A Simpler, cleaner and safer [IPN Notification Handler](https://github.com/mercadopago/dx-dotnet/pull/58)
 
 ### .NET versions supported:
   
