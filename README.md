@@ -18,9 +18,9 @@ It has several improvements currently not present in the official version:
   - A Simpler, cleaner and safer [IPN Notification Handler](https://github.com/mercadopago/dx-dotnet/pull/58)
 
 ### .NET versions supported:
-  
+
+  - .NET Standard 2.0  
   - .NET Framework 3.5 and above
-  - .NET Standard 2.0
 
 ## Installation 
 

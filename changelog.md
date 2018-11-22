@@ -1,6 +1,11 @@
 # Lexim MercadoPago SDK - Change Log
 
-## 1.0.7 (Current)
+## 1.0.8 (Current)
+  - Merged latest changes from official SDK, including bug fixes related to shipment data.
+  - Removed previously deprecated MPIPN class.
+  - Reworked code samples.
+
+## 1.0.7
   - Merged [latest changes](https://github.com/mercadopago/dx-dotnet/tree/7c4bc0eb493b00cd69b7dcdf0a1efb7c360b80fa) from official SDK.
   - `PaymentType.Id` is now nullable. Fixes [#4](https://github.com/LeximSoluciones/Lexim-MercadoPago-Sdk/issues/4) 
 

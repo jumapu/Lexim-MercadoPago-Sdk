@@ -7,7 +7,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MercadoPagoSDK", "px-dotnet
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MercadoPagoSDK.Test", "MercadoPagoSDK.Test\MercadoPagoSDK.Test.csproj", "{8E0E8C0D-3015-4978-9CCC-E7AA401ED183}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MercadoPagoSDK.Samples", "MercadoPagoSDK.Samples\MercadoPagoSDK.Samples.csproj", "{01FB62DE-E5FA-4909-8822-A877D154C53B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MercadoPagoSDK.Samples", "MercadoPagoSDK.Samples\MercadoPagoSDK.Samples.csproj", "{01FB62DE-E5FA-4909-8822-A877D154C53B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
