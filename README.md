@@ -16,11 +16,12 @@ It has several improvements currently not present in the official version:
   - [Cleaner API surface](https://github.com/LeximSoluciones/Lexim-MercadoPago-Sdk/blob/master/changelog.md#cleaner-api-surface)
   - [LINQ Provider](https://github.com/LeximSoluciones/Lexim-MercadoPago-Sdk/blob/master/Docs/Linq.md)
   - A Simpler, cleaner and safer [IPN Notification Handler](https://github.com/mercadopago/dx-dotnet/pull/58)
+  - Before-request [Data Validations](https://github.com/LeximSoluciones/Lexim-MercadoPago-Sdk/blob/master/Docs/Validations.md)
 
 ### .NET versions supported:
 
-  - .NET Standard 2.0  
-  - .NET Framework 3.5 and above
+  - [.NET Standard 2.0](https://docs.microsoft.com/en-us/dotnet/standard/net-standard) and all platforms that support it (.NET Core, Mono, Xamarin, Unity, etc)
+  - .NET Framework 3.5 and above on Windows platforms
 
 ## Installation 
 
