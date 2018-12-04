@@ -1,6 +1,12 @@
 # Lexim MercadoPago SDK - Change Log
 
-## 1.0.9 (Current)
+## 1.0.10 (Current)
+  - Merged latest changes from official SDK.
+
+### Improved error handling
+  - HTTP status codes in the range `400-500` will no longer result in a silent failure. An exception is now thrown for all non-successful actions performed via the SDK.
+
+## 1.0.9
   - Fixed invalid `Id1` property in `MercadoPago.DataStructures.Payment.Order`. Partial fix for [#6](https://github.com/LeximSoluciones/Lexim-MercadoPago-Sdk/issues/6).
 
 ## 1.0.8

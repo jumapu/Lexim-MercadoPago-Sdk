@@ -17,6 +17,7 @@ It has several improvements currently not present in the official version:
   - [LINQ Provider](https://github.com/LeximSoluciones/Lexim-MercadoPago-Sdk/blob/master/Docs/Linq.md)
   - A Simpler, cleaner and safer [IPN Notification Handler](https://github.com/mercadopago/dx-dotnet/pull/58)
   - Before-request [Data Validations](https://github.com/LeximSoluciones/Lexim-MercadoPago-Sdk/blob/master/Docs/Validations.md)
+  - [Improved error handling](https://github.com/LeximSoluciones/Lexim-MercadoPago-Sdk/blob/master/changelog.md#improved-error-handling)
 
 ### .NET versions supported:
 
@@ -84,19 +85,20 @@ preference.Save();
 Process.Start(preference.InitPoint);
 ```
 
-> You can find more examples in the [`MercadoPagoExample`](MercadoPagoExample) folder.
+> You can find more examples in the [`MercadoPagoSDK.Samples`](MercadoPagoSDK.Samples) folder.
 
 ### 4. Handling Errors
 
-**Error response structure**
+There are 3 kinds of errors that you may get when interacting with this SDK:
 
-![errorstructure](https://user-images.githubusercontent.com/864790/40929584-9cc4c96e-67fb-11e8-80a4-8d797953233a.png)
+  - All Non-successful HTTP responses from the MercadoPago in the API will result in an exception.
+  - HTTP responses in the range 400-500 will result in an exception with an `Error` property, with the following structure:
 
-You can check the errors and causes returned by the API using the `errors` attribute.
+    ![errorstructure](https://user-images.githubusercontent.com/864790/40929584-9cc4c96e-67fb-11e8-80a4-8d797953233a.png)
 
-```csharp
-Console.WriteLine(payment.Errors.Message) // Print the error Message 
-```
+  - Before-request Validation errors will result in an exception with a clear, detailed message about the particular entity and property.
+
+> See the [Handling Exceptions Example](https://github.com/LeximSoluciones/Lexim-MercadoPago-Sdk/blob/master/MercadoPagoSDK.Samples/Samples/ExceptionSample.cs) for details.
 
 ### Support 
 
