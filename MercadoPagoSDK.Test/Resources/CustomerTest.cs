@@ -58,7 +58,7 @@ namespace MercadoPagoSDK.Test.Resources
             customer.Save(); 
             LastCustomer = customer;
 
-            Assert.IsTrue(customer.Id != null, $"Failed: Customer could not be successfully created: {customer.Errors?.Message}");
+            Assert.IsTrue(customer.Id != null, $"Failed: Customer could not be successfully created.");
 
             Console.WriteLine("id: {0}", customer.Id.ToString());
         }
