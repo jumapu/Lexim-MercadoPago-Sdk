@@ -1,4 +1,5 @@
 ﻿using MercadoPago;
+using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
 using System.Configuration;
@@ -187,5 +188,33 @@ namespace MercadoPago
 
             AccessToken = accessToken;
         }
+
+        /// <summary>
+        /// Gets the custom user token.
+        /// </summary>
+        /// <returns>User token to return.</returns>
+        public static string GetUserToken()
+        {
+            return UserToken;
+        }        
+
+        public static JToken Get(String uri)
+        {
+            MPRESTClient client = new MPRESTClient();
+            return client.ExecuteGenericRequest(HttpMethod.GET, uri, PayloadType.JSON, null);
+        }
+
+        public static JToken Post(string uri, JObject payload)
+        {
+            MPRESTClient client = new MPRESTClient();
+            return client.ExecuteGenericRequest(HttpMethod.POST, uri, PayloadType.JSON, payload);
+        }
+
+        public static JToken Put(string uri, JObject payload)
+        {
+            MPRESTClient client = new MPRESTClient();
+            return client.ExecuteGenericRequest(HttpMethod.PUT, uri, PayloadType.JSON, payload);
+        }
+
     }
 }
