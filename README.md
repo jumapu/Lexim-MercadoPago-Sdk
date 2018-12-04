@@ -91,12 +91,12 @@ Process.Start(preference.InitPoint);
 
 There are 3 kinds of errors that you may get when interacting with this SDK:
 
-  - All Non-successful HTTP responses from the MercadoPago in the API will result in an exception.
+  - All Non-successful HTTP responses from the MercadoPago API will result in an exception.
   - HTTP responses in the range 400-500 will result in an exception with an `Error` property, with the following structure:
 
     ![errorstructure](https://user-images.githubusercontent.com/864790/40929584-9cc4c96e-67fb-11e8-80a4-8d797953233a.png)
 
-  - Before-request Validation errors will result in an exception with a clear, detailed message about the particular entity and property.
+  - Before-request Validation errors will result in an exception with a clear, detailed message about the relevant resource and property.
 
 > See the [Handling Exceptions Example](https://github.com/LeximSoluciones/Lexim-MercadoPago-Sdk/blob/master/MercadoPagoSDK.Samples/Samples/ExceptionSample.cs) for details.
 
