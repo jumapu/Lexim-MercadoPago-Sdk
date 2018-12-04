@@ -4,6 +4,7 @@ using System.Linq;
 using System.Runtime.Serialization;
 using System.Security.Permissions;
 using System.Text;
+using MercadoPago.DataStructures.Generic;
 
 namespace MercadoPago
 {
@@ -11,21 +12,16 @@ namespace MercadoPago
     public class MPException : Exception
     {
         #region Variables
-        public string RequestId { get; private set; }
+        public string RequestId { get; }
 		public int? StatusCode { get; set; } 
-        public string ErrorMessage { get; set; } 
-        public string Error { get; private set; }
-        private List<string> cause = new List<string>();
-
-        public List<string> Cause
-        {
-            get { return cause;  } 
-            set { cause = value; }
-        }
+        public string ErrorMessage { get; internal set; } 
+        
+        public List<string> Cause { get; internal set; } = new List<string>();
+        public BadParamsError Error { get; internal set; }
         #endregion
 
         #region Constructors
- 
+
         public MPException(SerializationInfo info, StreamingContext context) : base( info, context ){ 
             this.ErrorMessage = info.GetString("ErrorMessage");
         }

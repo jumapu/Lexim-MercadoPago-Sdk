@@ -89,6 +89,8 @@ namespace MercadoPago
         /// </summary>
         public static string BaseUrl { get; private set; } = DefaultBaseUrl;
 
+#if NET35
+
         /// <summary>
         /// Dictionary based configuration. Valid configuration keys:
         /// clientSecret, clientId, accessToken, appId
@@ -121,6 +123,8 @@ namespace MercadoPago
             _appId = GetConfigValue(config, "AppId");
         }
 
+#endif
+
         /// <summary>
         /// Clean all the configuration variables
         /// (FOR TESTING PURPOSES ONLY)
@@ -143,6 +147,8 @@ namespace MercadoPago
             BaseUrl = baseUrl;
         }
 
+#if NET35
+
         private static string GetConfigValue(Configuration config, string key)
         {
             string value = null;
@@ -153,6 +159,8 @@ namespace MercadoPago
             }
             return value;
         }
+
+#endif
 
         /// <summary>
         /// Authenticate with MercadoPago API, using SDK.ClientId and SDK.ClientSecret. The resulting token is stored in the SDK.AccessToken property.
@@ -174,43 +182,19 @@ namespace MercadoPago
         public static string GetAccessToken(string clientId, string clientSecret) =>
             MPCredentials.GetAccessToken(clientId, clientSecret);
 
-        /// <summary>
-        /// Sets the access token.
-        /// </summary>
-        /// <param name="accessToken">Value of the access token.</param>
-        [Obsolete("Will be removed in future versions. Use the SDK.AccessToken property setter instead.")]
-        public static void SetAccessToken(string accessToken)
-        {
-            if (!string.IsNullOrEmpty(AccessToken))
-            {
-                throw new MPException("Access_Token setting cannot be changed.");   
-            }
-
-            AccessToken = accessToken;
-        }
-
-        /// <summary>
-        /// Gets the custom user token.
-        /// </summary>
-        /// <returns>User token to return.</returns>
-        public static string GetUserToken()
-        {
-            return UserToken;
-        }        
-
-        public static JToken Get(String uri)
+        internal static JToken Get(String uri)
         {
             MPRESTClient client = new MPRESTClient();
             return client.ExecuteGenericRequest(HttpMethod.GET, uri, PayloadType.JSON, null);
         }
 
-        public static JToken Post(string uri, JObject payload)
+        internal static JToken Post(string uri, JObject payload)
         {
             MPRESTClient client = new MPRESTClient();
             return client.ExecuteGenericRequest(HttpMethod.POST, uri, PayloadType.JSON, payload);
         }
 
-        public static JToken Put(string uri, JObject payload)
+        internal static JToken Put(string uri, JObject payload)
         {
             MPRESTClient client = new MPRESTClient();
             return client.ExecuteGenericRequest(HttpMethod.PUT, uri, PayloadType.JSON, payload);

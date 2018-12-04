@@ -19,6 +19,7 @@ namespace MercadoPago
             
         }
 
+        [Obsolete("Deprecated. Handle errors using proper try/catch instead.", true)]
         public RecuperableError Errors { get; internal set; }
 
         internal MPAPIResponse LastApiResponse { get; set; }
@@ -183,20 +184,24 @@ namespace MercadoPago
                     FillResourceWithResponseData(resource, response);
                 }
             }
-            else if (response.StatusCode >= 400 && response.StatusCode < 500)
-            {
-                BadParamsError badParamsError = MPCoreUtils.GetBadParamsError(response.StringResponse);
-                resource.Errors = badParamsError;
-            }
             else
             {
                 var exception = new MPException
                 {
                     StatusCode = response.StatusCode,
-                    ErrorMessage = response.StringResponse
+                    ErrorMessage = response.StringResponse,
+                    Cause =
+                    {
+                        response.JsonObjectResponse?.ToString() ?? response.StringResponse
+                    }
                 };
 
-                exception.Cause.Add(response.JsonObjectResponse.ToString());
+                if (response.StatusCode >= 400 && response.StatusCode < 500)
+                {
+                    var badParamsError = MPCoreUtils.GetBadParamsError(response.StringResponse);
+                    exception.Error = badParamsError;
+                    exception.ErrorMessage = badParamsError.ToString();
+                }
 
                 throw exception;
             }
@@ -220,7 +225,7 @@ namespace MercadoPago
                 {
                     nameof(LastKnownJson),
                     nameof(LastApiResponse),
-                    nameof(Errors),
+                    "Errors",
                     nameof(UserAccessToken)
                 };
 
