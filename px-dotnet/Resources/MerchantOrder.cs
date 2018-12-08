@@ -25,6 +25,7 @@ namespace MercadoPago.Resources
 
         public string Id { get; set; }
 
+        [Required]
         public string PreferenceId { get; set; }
 
         public DateTime? DateCreated { get; private set; }
