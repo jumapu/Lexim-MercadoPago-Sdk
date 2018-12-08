@@ -17,7 +17,7 @@ namespace MercadoPago
                 {
                     new IsoDateTimeConverter
                     {
-                        DateTimeFormat = "yyyy-MM-dd'T'HH:mm:ss.fffK"
+                        DateTimeFormat = "yyyy-MM-dd'T'HH:mm:ssK"
                     }
                 }
             };
@@ -31,7 +31,7 @@ namespace MercadoPago
                 {
                     new IsoDateTimeConverter
                     {
-                        DateTimeFormat = "yyyy-MM-dd'T'HH:mm:ss.fffK"
+                        DateTimeFormat = "yyyy-MM-dd'T'HH:mm:ssK"
                     }
                 }
             };
@@ -90,7 +90,7 @@ namespace MercadoPago
                         {
                             if (jold[x.Name] != null)
                             {
-                                if ((string)x.Value != (string)jold[x.Name])
+                                if ((string)x.Value != SerializeValue(jold[x.Name]))
                                 {
                                     result.Add(key, x.Value);
                                 }
