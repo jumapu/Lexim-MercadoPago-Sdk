@@ -321,7 +321,7 @@ namespace MercadoPago.Resources
         /// <summary>
         /// Sponsor Identification
         /// </summary>
-        public decimal? SponsorId { get; set; }
+        public long? SponsorId { get; set; }
         #endregion
     }
 }
