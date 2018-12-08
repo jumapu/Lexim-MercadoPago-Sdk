@@ -89,7 +89,7 @@ namespace MercadoPago
         /// </summary>
         public static string BaseUrl { get; private set; } = DefaultBaseUrl;
 
-#if NET35
+#if NET40
 
         /// <summary>
         /// Dictionary based configuration. Valid configuration keys:
@@ -147,7 +147,7 @@ namespace MercadoPago
             BaseUrl = baseUrl;
         }
 
-#if NET35
+#if NET40
 
         private static string GetConfigValue(Configuration config, string key)
         {

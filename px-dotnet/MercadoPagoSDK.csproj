@@ -3,7 +3,7 @@
   <PropertyGroup>
     <RootNamespace>MercadoPago</RootNamespace>
     <AssemblyName>Lexim.MercadoPago</AssemblyName>
-    <TargetFrameworks>netstandard2.0;net35</TargetFrameworks>
+    <TargetFrameworks>netstandard2.0;net40</TargetFrameworks>
     <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
     <FileAlignment>512</FileAlignment>
     <PackageId>Lexim.MercadoPago.Sdk</PackageId>
@@ -23,7 +23,7 @@
   <ItemGroup>
     <Compile Remove="Core\MPBase.cs" />
   </ItemGroup>
-  <ItemGroup Condition="'$(TargetFramework)'=='net35'">
+  <ItemGroup Condition="'$(TargetFramework)'=='net40'">
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.configuration" />
