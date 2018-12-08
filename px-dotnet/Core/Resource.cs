@@ -105,7 +105,7 @@ namespace MercadoPago
             var resource = new T();
             var response = Invoke(HttpMethod.GET, path, PayloadType.NONE, null, accessToken, null, useCache, requestTimeout, retries);
 
-            ProcessResponse(resource, response, HttpMethod.GET);
+            ProcessResponse(path, resource, response, HttpMethod.GET);
             return resource;
         }
 
@@ -156,7 +156,7 @@ namespace MercadoPago
 
             var response = Invoke(httpMethod, path, PayloadType.JSON, payload, resource.UserAccessToken, null, useCache, requestTimeout, retries);
 
-            ProcessResponse(resource, response, httpMethod);
+            ProcessResponse(path, resource, response, httpMethod);
             return resource;
         }
 
@@ -175,8 +175,12 @@ namespace MercadoPago
             }
         }
 
-        internal static void ProcessResponse(T resource, MPAPIResponse response, HttpMethod httpMethod)
+        internal static void ProcessResponse(string path, T resource, MPAPIResponse response, HttpMethod httpMethod)
         {
+            var errorDetails = response.JsonObjectResponse?.ToString() ?? response.StringResponse ?? "[No additional details could be retrieved from the response]";
+            var errorMessage =
+                $"HTTP {httpMethod} request to Endpoint '{path}' with payload of type '{typeof(T).Name}' resulted in an unsuccessful HTTP response with status code {response.StatusCode}.\r\nDetails:\r\n{errorDetails}";
+
             if (response.StatusCode >= 200 && response.StatusCode < 300)
             {
                 if (httpMethod != HttpMethod.DELETE)
@@ -184,24 +188,29 @@ namespace MercadoPago
                     FillResourceWithResponseData(resource, response);
                 }
             }
+            else if (response.StatusCode >= 400 && response.StatusCode < 500)
+            {
+                var badParamsError = MPCoreUtils.GetBadParamsError(response.StringResponse);
+
+                var exception = new MPException(errorMessage)
+                {
+                    Error = badParamsError,
+                    ErrorMessage = badParamsError.ToString()
+                };
+
+                throw exception;
+            }
             else
             {
-                var exception = new MPException
+                var exception = new MPException(errorMessage)
                 {
                     StatusCode = response.StatusCode,
                     ErrorMessage = response.StringResponse,
                     Cause =
                     {
-                        response.JsonObjectResponse?.ToString() ?? response.StringResponse
+                        errorDetails
                     }
                 };
-
-                if (response.StatusCode >= 400 && response.StatusCode < 500)
-                {
-                    var badParamsError = MPCoreUtils.GetBadParamsError(response.StringResponse);
-                    exception.Error = badParamsError;
-                    exception.ErrorMessage = badParamsError.ToString();
-                }
 
                 throw exception;
             }
