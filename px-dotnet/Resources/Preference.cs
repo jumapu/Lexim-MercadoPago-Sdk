@@ -150,7 +150,7 @@ namespace MercadoPago.Resources
 
         public List<Item> Items { get; set; } = new List<Item>();
 
-        public string SponsorId { get; set; }
+        public long? SponsorId { get; set; }
 
         public List<ProcessingMode> ProcessingModes { get; set; } = new List<ProcessingMode>();
 

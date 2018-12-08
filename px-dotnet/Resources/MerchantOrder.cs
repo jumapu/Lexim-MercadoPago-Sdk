@@ -42,7 +42,7 @@ namespace MercadoPago.Resources
 
         public Collector? Collector { get; set; }
 
-        public int? SponsorId { get; set; }
+        public long? SponsorId { get; set; }
 
         public List<MerchantOrderPayment> Payments { get; private set; }
 
