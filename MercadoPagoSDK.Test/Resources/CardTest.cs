@@ -11,7 +11,7 @@ namespace MercadoPagoSDK.Test.Resources
     [TestFixture]
     public class CardTest
     {
-        private const string Email = "temp.customer@gmail.com";
+        private const string Email = "temp.customer7@gmail.com";
         string AccessToken;
         string PublicKey;
         Customer _customer;
@@ -47,6 +47,8 @@ namespace MercadoPagoSDK.Test.Resources
                     Email = Email
                 };
                 _customer.Save();
+                _customer = Customer.FindById(_customer.Id);
+
             }
         }
 

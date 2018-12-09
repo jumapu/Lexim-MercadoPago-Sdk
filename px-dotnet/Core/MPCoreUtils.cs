@@ -65,8 +65,20 @@ namespace MercadoPago
                 ContractResolver = new CustomDeserializationContractResolver()
             };
 
-            BadParamsError badParams = (BadParamsError)jObj.ToObject<BadParamsError>(serializer);
-            return badParams;
+            try
+            {
+                return jObj.ToObject<BadParamsError>(serializer);
+            }
+            catch
+            {
+                return new BadParamsError
+                {
+                    Error = jObj["error"]?.Value<string>(),
+                    Message = jObj["message"]?.Value<string>(),
+                    Status = jObj["status"]?.Value<int>() ?? 0
+                };
+            }
+            
         }
 
         public static JArray GetArrayFromJsonElement(JObject jsonElement)

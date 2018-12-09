@@ -167,9 +167,10 @@ namespace MercadoPago
                 case HttpMethod.POST:
                     return resource.Serialize();
                 case HttpMethod.PUT:
-                    JObject jactual = resource.Serialize();
-                    JObject jold = resource.LastKnownJson;
-                    return Serialization.GetDiffFromLastChange(jactual, jold);
+                    return resource.Serialize();
+                    //JObject jactual = resource.Serialize();
+                    //JObject jold = resource.LastKnownJson;
+                    //return Serialization.GetDiffFromLastChange(jactual, jold);
                 default:
                     return null;
             }
