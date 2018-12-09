@@ -13,7 +13,7 @@ using Newtonsoft.Json.Linq;
 namespace MercadoPagoSDK.Test.Resources
 {
     [TestFixture()]
-    [Ignore("Tests are failing due to invalid expiration_date_from on create request. Compare with official impl.")]
+    //[Ignore("Tests are failing due to invalid expiration_date_from on create request. Compare with official impl.")]
     public class PreferenceTest
     {
         Preference LastPreference;
@@ -53,8 +53,8 @@ namespace MercadoPagoSDK.Test.Resources
             {
                 ExternalReference = "01-02-00000003",
                 Expires = true,
-                ExpirationDateFrom = DateTime.UtcNow,
-                ExpirationDateTo = DateTime.UtcNow.AddDays(1), 
+                ExpirationDateFrom = DateTime.Now,
+                ExpirationDateTo = DateTime.Now.AddDays(1), 
                 PaymentMethods = new PaymentMethods()
                 { 
                     ExcludedPaymentTypes = excludedPaymentTypes

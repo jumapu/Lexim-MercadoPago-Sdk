@@ -89,7 +89,7 @@ namespace MercadoPagoSDK.Test.Resources
         }
         
         [Test, Order(50)]
-        [Ignore("Endpoint is failing with status 400. Compare implementation with official SDK.")]
+        //[Ignore("Endpoint is failing with status 400. Compare implementation with official SDK.")]
         public void Card_UpdateShouldBeOk()
         {
             var lastToken = _card.Token;

@@ -17,7 +17,7 @@ namespace MercadoPago
                 {
                     new IsoDateTimeConverter
                     {
-                        DateTimeFormat = "yyyy-MM-dd'T'HH:mm:ssK"
+                        DateTimeFormat = "yyyy-MM-dd'T'HH:mm:ss.fffK"
                     }
                 }
             };
@@ -31,7 +31,7 @@ namespace MercadoPago
                 {
                     new IsoDateTimeConverter
                     {
-                        DateTimeFormat = "yyyy-MM-dd'T'HH:mm:ssK"
+                        DateTimeFormat = "yyyy-MM-dd'T'HH:mm:ss.fffK"
                     }
                 }
             };
