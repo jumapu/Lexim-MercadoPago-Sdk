@@ -21,6 +21,7 @@ namespace MercadoPagoSDK.Test.Resources
         {
             // Avoid SSL Cert error
             ServicePointManager.ServerCertificateValidationCallback = delegate { return true; };
+            ServicePointManager.SecurityProtocol |= (SecurityProtocolType)3072;
             SDK.CleanConfiguration();
             SDK.SetBaseUrl("https://api.mercadopago.com");
             SDK.ClientId = Environment.GetEnvironmentVariable("CLIENT_ID");
