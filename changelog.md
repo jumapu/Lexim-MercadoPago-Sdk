@@ -1,6 +1,22 @@
 # Lexim MercadoPago SDK - Change Log
 
-## 1.0.10 (Current)
+## 2.0.0 (Current)
+
+### Async support
+
+  Async counterparts have been added for most effectful methods in most resource classes. `SaveAsync()`, `UpdateAsync()`, `DeleteAsync()`, `FindByIdAsync()`, etc have been added to most resource classes. These are based on the async `HttpClient` API, in contrast to the legacy synchronous methods, which are based on `HttpWebRequest` and `HttpWebResponse`.
+  
+  > Note: These new methods are available only when using the .NET Standard version of the SDK.
+
+### Test project now targets .NET Framework 4.5 and .NET Core 2.1
+  - Most tests are now passing for both platforms.
+  - Tests related to `System.Configuration` and stringly-typed configuration of credentials have been ommited for .NET Core. A new configuration API will be made available using .NET Core idioms.
+
+### Dropped support for .NET Framework 3.5
+  - Minimum .NET Framework version required has been changed to 4.0. This is due to [.NET Core tooling not supporting .NET 3.5](https://github.com/Microsoft/msbuild/issues/1333).
+  - If you are still running .NET Framework 3.5, you may continue to use 1.x versions.
+
+## 1.0.10
   - Merged latest changes from official SDK.
 
 ### Improved error handling

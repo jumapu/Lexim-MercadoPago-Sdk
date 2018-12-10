@@ -18,11 +18,13 @@ It has several improvements currently not present in the official version:
   - A Simpler, cleaner and safer [IPN Notification Handler](https://github.com/mercadopago/dx-dotnet/pull/58)
   - Before-request [Data Validations](https://github.com/LeximSoluciones/Lexim-MercadoPago-Sdk/blob/master/Docs/Validations.md)
   - [Improved error handling](https://github.com/LeximSoluciones/Lexim-MercadoPago-Sdk/blob/master/changelog.md#improved-error-handling)
+  - [Async support](https://github.com/LeximSoluciones/Lexim-MercadoPago-Sdk/blob/master/changelog.md#async-support) (.NET Standard / .NET Core only)
 
 ### .NET versions supported:
 
   - [.NET Standard 2.0](https://docs.microsoft.com/en-us/dotnet/standard/net-standard) and all platforms that support it (.NET Core, Mono, Xamarin, Unity, etc)
-  - .NET Framework 3.5 and above on Windows platforms
+  - .NET Framework 4.0 and above on Windows platforms
+  - Legacy 1.x versions of the SDK support .NET Framework 3.5
 
 ## Installation 
 
