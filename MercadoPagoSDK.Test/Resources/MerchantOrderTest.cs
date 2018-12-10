@@ -13,6 +13,9 @@ namespace MercadoPagoSDK.Test.Resources
     [TestFixture()]
     public class MerchantOrderTest
     {
+        [SetUp]
+        public void Init() => Authentication.Initialize(useAccessToken: true, useClientCredentials: false);
+
         [Test()]
         public void MerchantOrder_AppendItemShouldBeOk()
         {
@@ -58,25 +61,25 @@ namespace MercadoPagoSDK.Test.Resources
         [Ignore("These tests are complete bullshit.")]
         public void MerchantOrder_LoadShouldbeOk()
         {
-            SDK.CleanConfiguration();
-            SDK.SetBaseUrl("https://api.mercadopago.com");
+            //SDK.CleanConfiguration();
+            //SDK.SetBaseUrl("https://api.mercadopago.com");
 
-            Dictionary<string, string> config = new Dictionary<string, string>();
-            config.Add("clientSecret", Environment.GetEnvironmentVariable("CLIENT_SECRET"));
-            config.Add("clientId", Environment.GetEnvironmentVariable("CLIENT_ID"));
-            SDK.SetConfiguration(config);
+            //Dictionary<string, string> config = new Dictionary<string, string>();
+            //config.Add("clientSecret", Environment.GetEnvironmentVariable("CLIENT_SECRET"));
+            //config.Add("clientId", Environment.GetEnvironmentVariable("CLIENT_ID"));
+            //SDK.SetConfiguration(config);
 
-            MerchantOrder merchantOrderInternal = new MerchantOrder();
-            try
-            {
-                var result = merchantOrderInternal.Load("1234");
-            }
-            catch (MPException mpException)
-            {
-                Assert.Fail();
-            }
+            //MerchantOrder merchantOrderInternal = new MerchantOrder();
+            //try
+            //{
+            //    var result = merchantOrderInternal.Load("1234");
+            //}
+            //catch (MPException mpException)
+            //{
+            //    Assert.Fail();
+            //}
 
-            Assert.Pass();
+            //Assert.Pass();
         }
 
         //[Test()]
@@ -101,26 +104,26 @@ namespace MercadoPagoSDK.Test.Resources
         [Ignore("These tests are complete bullshit.")]
         public void MerchantOrder_UpdateShouldBeOk()
         {
-            SDK.CleanConfiguration();
-            SDK.SetBaseUrl("https://api.mercadopago.com");
+            //SDK.CleanConfiguration();
+            //SDK.SetBaseUrl("https://api.mercadopago.com");
 
-            Dictionary<string, string> config = new Dictionary<string, string>();
-            config.Add("clientSecret", Environment.GetEnvironmentVariable("CLIENT_SECRET"));
-            config.Add("clientId", Environment.GetEnvironmentVariable("CLIENT_ID"));
-            SDK.SetConfiguration(config);
+            //Dictionary<string, string> config = new Dictionary<string, string>();
+            //config.Add("clientSecret", Environment.GetEnvironmentVariable("CLIENT_SECRET"));
+            //config.Add("clientId", Environment.GetEnvironmentVariable("CLIENT_ID"));
+            //SDK.SetConfiguration(config);
 
-            MerchantOrder merchantOrderInternal = new MerchantOrder() { Id = "1" };
+            //MerchantOrder merchantOrderInternal = new MerchantOrder() { Id = "1" };
 
-            try
-            {
-                var result = merchantOrderInternal.Update();
-            }
-            catch (MPException mpException)
-            {
-                Assert.Fail();
-            }
+            //try
+            //{
+            //    var result = merchantOrderInternal.Update();
+            //}
+            //catch (MPException mpException)
+            //{
+            //    Assert.Fail();
+            //}
 
-            Assert.Pass();
+            //Assert.Pass();
         }
 
         [Test()]
@@ -147,26 +150,26 @@ namespace MercadoPagoSDK.Test.Resources
         [Ignore("These tests are complete bullshit.")]
         public void MerchantOrder_CreateShouldBeOk()
         {
-            SDK.CleanConfiguration();
-            SDK.SetBaseUrl("https://api.mercadopago.com");
+            //SDK.CleanConfiguration();
+            //SDK.SetBaseUrl("https://api.mercadopago.com");
 
-            Dictionary<string, string> config = new Dictionary<string, string>();
-            config.Add("clientSecret", Environment.GetEnvironmentVariable("CLIENT_SECRET"));
-            config.Add("clientId", Environment.GetEnvironmentVariable("CLIENT_ID"));
-            SDK.SetConfiguration(config);
+            //Dictionary<string, string> config = new Dictionary<string, string>();
+            //config.Add("clientSecret", Environment.GetEnvironmentVariable("CLIENT_SECRET"));
+            //config.Add("clientId", Environment.GetEnvironmentVariable("CLIENT_ID"));
+            //SDK.SetConfiguration(config);
 
-            MerchantOrder merchantOrderInternal = new MerchantOrder();
+            //MerchantOrder merchantOrderInternal = new MerchantOrder();
 
-            try
-            {
-                var result = merchantOrderInternal.Save();
-            }
-            catch (MPException mpException)
-            {
-                Assert.Fail();
-            }
+            //try
+            //{
+            //    var result = merchantOrderInternal.Save();
+            //}
+            //catch (MPException mpException)
+            //{
+            //    Assert.Fail();
+            //}
 
-            Assert.Pass();
+            //Assert.Pass();
         }
 
         //[Test()]

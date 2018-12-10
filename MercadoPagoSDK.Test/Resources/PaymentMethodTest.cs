@@ -10,22 +10,8 @@ namespace MercadoPagoSDK.Test.Resources
     [TestFixture] 
     public class PaymentMethodTest
     {
-        string AccessToken;
-
         [SetUp]
-        public void Init()
-        {
-            // Avoid SSL Cert error
-            ServicePointManager.ServerCertificateValidationCallback = delegate { return true; };
-            ServicePointManager.SecurityProtocol |= (SecurityProtocolType)3072;
-            // HardCoding Credentials
-            AccessToken = Environment.GetEnvironmentVariable("ACCESS_TOKEN");
-            
-            // Make a Clean Test
-            SDK.CleanConfiguration();
-            SDK.SetBaseUrl("https://api.mercadopago.com");
-            SDK.AccessToken = AccessToken;
-        }
+        public void Init() => Authentication.Initialize(useAccessToken: true, useClientCredentials: false);
 
         [Test]
         public void PaymentMethod_All_ShouldReturnValues()

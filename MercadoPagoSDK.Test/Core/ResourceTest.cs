@@ -237,11 +237,9 @@ namespace MercadoPagoSDK.Test
         {
             DummyClass resource = new DummyClass();
             DummyClass result = new DummyClass();
-            Dictionary<string, string> config = new Dictionary<string, string>();
-            config.Add("clientSecret", Environment.GetEnvironmentVariable("CLIENT_SECRET"));
-            config.Add("clientId", Environment.GetEnvironmentVariable("CLIENT_ID"));
-            config.Add("accessToken", Environment.GetEnvironmentVariable("ACCESS_TOKEN"));
-            SDK.SetConfiguration(config);
+            
+            Authentication.Initialize(useAccessToken: true, useClientCredentials: true);
+            SDK.SetBaseUrl("https://httpbin.org");
 
             try
             {

@@ -16,21 +16,10 @@ namespace MercadoPagoSDK.Test.Resources
     {
         private const string Email = "Rafa.Williner@gmail.com";
         private const string LastName = "Calciati Rodriguez";
-        private string _accessToken;
         private Customer _lastCustomer;
 
         [SetUp]
-        public void Init()
-        {
-            // Avoid SSL Cert error
-            ServicePointManager.ServerCertificateValidationCallback = delegate { return true; };
-            // HardCoding Credentials
-            _accessToken = Environment.GetEnvironmentVariable("ACCESS_TOKEN");
-            // Make a Clean Test
-            SDK.CleanConfiguration();
-            SDK.SetBaseUrl("https://api.mercadopago.com");
-            SDK.AccessToken = _accessToken;
-        }
+        public void Init() => Authentication.Initialize(useAccessToken: true, useClientCredentials: false);
 
         [Test, Order(1)]
         public void Customer_Create_ShouldBeOk()

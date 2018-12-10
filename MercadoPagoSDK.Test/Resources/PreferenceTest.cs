@@ -12,24 +12,13 @@ using Newtonsoft.Json.Linq;
 
 namespace MercadoPagoSDK.Test.Resources
 {
-    [TestFixture()]
-    //[Ignore("Tests are failing due to invalid expiration_date_from on create request. Compare with official impl.")]
+    [TestFixture]
     public class PreferenceTest
     {
         Preference LastPreference;
 
         [SetUp]
-        public void Init()
-        {
-            // Avoid SSL Cert error
-            ServicePointManager.ServerCertificateValidationCallback = delegate { return true; };
-            ServicePointManager.SecurityProtocol |= (SecurityProtocolType)3072;
-            
-            SDK.CleanConfiguration();
-            SDK.SetBaseUrl("https://api.mercadopago.com");
-            SDK.ClientId = Environment.GetEnvironmentVariable("CLIENT_ID");
-            SDK.ClientSecret = Environment.GetEnvironmentVariable("CLIENT_SECRET");
-        }
+        public void Init() => Authentication.Initialize(useAccessToken: false, useClientCredentials: true);
 
         [Test]
         public void Preference_CreateShouldBeOk() 
@@ -76,6 +65,7 @@ namespace MercadoPagoSDK.Test.Resources
             preference.ProcessingModes.Add(MercadoPago.Common.ProcessingMode.aggregator);
 
             preference.Save();
+            
             LastPreference = preference;
 
             Console.WriteLine("INIT POINT: " + preference.InitPoint);

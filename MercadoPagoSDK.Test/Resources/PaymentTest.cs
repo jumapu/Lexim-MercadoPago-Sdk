@@ -15,28 +15,19 @@ namespace MercadoPagoSDK.Test.Resources
     [TestFixture] 
     public class PaymentTest
     {
-        string AccessToken;
         string PublicKey;
         Payment LastPayment; 
 
         [SetUp]
-        public void Init(){ 
-            // Avoid SSL Cert error
-            ServicePointManager.ServerCertificateValidationCallback = delegate { return true; };
-            ServicePointManager.SecurityProtocol |= (SecurityProtocolType)3072;
-            // HardCoding Credentials
-            AccessToken = Environment.GetEnvironmentVariable("ACCESS_TOKEN");
+        public void Init()
+        { 
+            Authentication.Initialize(useAccessToken: true, useClientCredentials: false);
             PublicKey = Environment.GetEnvironmentVariable("PUBLIC_KEY");
-            // Make a Clean Test
-            SDK.CleanConfiguration();
-            SDK.SetBaseUrl("https://api.mercadopago.com");
-            SDK.AccessToken = AccessToken; 
         }
 
         [Test]
         public void Payment_Create_ShouldBeOk()
         {
-
             var addInfPayerAdd = new Address
             {
                 StreetName = "aaa",

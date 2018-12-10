@@ -16,15 +16,7 @@ namespace MercadoPagoSDK.Test.Resources
         Preapproval LastPreapproval;
 
         [SetUp]
-        public void Init()
-        {
-            // Avoid SSL Cert error
-            ServicePointManager.ServerCertificateValidationCallback = delegate { return true; };
-            ServicePointManager.SecurityProtocol |= (SecurityProtocolType)3072;
-            SDK.CleanConfiguration();
-            SDK.ClientId = Environment.GetEnvironmentVariable("CLIENT_ID");
-            SDK.ClientSecret = Environment.GetEnvironmentVariable("CLIENT_SECRET");
-        }
+        public void Init() => Authentication.Initialize(useAccessToken: false, useClientCredentials: true);
 
         [Test]
         public void Preapproval_CreateShouldBeOk()
