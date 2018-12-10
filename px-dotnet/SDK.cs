@@ -89,6 +89,8 @@ namespace MercadoPago
         /// </summary>
         public static string BaseUrl { get; private set; } = DefaultBaseUrl;
 
+        public static string Version { get; } = typeof(SDK).Assembly.GetName().Version.ToString();
+
 #if NET40
 
         /// <summary>
@@ -182,7 +184,7 @@ namespace MercadoPago
         public static string GetAccessToken(string clientId, string clientSecret) =>
             MPCredentials.GetAccessToken(clientId, clientSecret);
 
-        internal static JToken Get(String uri)
+        internal static JToken Get(string uri)
         {
             MPRESTClient client = new MPRESTClient();
             return client.ExecuteGenericRequest(HttpMethod.GET, uri, PayloadType.JSON, null);

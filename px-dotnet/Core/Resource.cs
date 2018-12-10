@@ -1,42 +1,14 @@
-using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Reflection;
 using MercadoPago.Core.Linq;
-using MercadoPago.DataStructures.Generic;
 using MercadoPago.Validation;
-using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 
 namespace MercadoPago
 {
-    public abstract partial class ResourceBase
-    {
-        // prevent derived classes outside this assembly.
-        internal ResourceBase()
-        {
-            
-        }
-
-        [Obsolete("Deprecated. Handle errors using proper try/catch instead.", true)]
-        public RecuperableError Errors { get; internal set; }
-
-        internal MPAPIResponse LastApiResponse { get; set; }
-
-        internal JObject LastKnownJson { get; set; }
-
-        /// <summary>
-        /// Can be used to provider per-instance or per-request Access Tokens for the MercadoPago API. 
-        /// If left null/empty, then the SDK.AccessToken is used instead.
-        /// </summary>
-        [JsonIgnore]
-        public string UserAccessToken { get; set; }
-
-        internal JObject GetJsonSource() => LastApiResponse?.JsonObjectResponse;
-    }
-
-    public abstract class Resource<T>: ResourceBase where T: ResourceBase, new()
+    public abstract partial class Resource<T>: ResourceBase where T: ResourceBase, new()
     {
         // prevent derived classes outside this assembly.
         internal Resource()
@@ -48,18 +20,9 @@ namespace MercadoPago
         {
             path = CreatePath(path, accessToken, queryParameters);
 
-            string cacheKey = httpMethod.ToString() + "_" + path;
-            MPAPIResponse response = null;
+            var cacheKey = GetCacheKey(httpMethod, path);
 
-            if (useCache)
-            {
-                response = MPCache.GetFromCache(cacheKey);
-
-                if (response != null)
-                {
-                    response.IsFromCache = true;
-                }
-            }
+            var response = TryGetFromCache(useCache, cacheKey);
 
             if (response == null)
             {
@@ -72,14 +35,7 @@ namespace MercadoPago
                     requestTimeout,
                     retries);
 
-                if (useCache)
-                {
-                    MPCache.AddToCache(cacheKey, response);
-                }
-                else
-                {
-                    MPCache.RemoveFromCache(cacheKey);
-                }
+                TryAddToCache(useCache, cacheKey, response);
             }
 
             return response;
@@ -92,7 +48,7 @@ namespace MercadoPago
 
             var queryString =
                 queryParameters != null
-                    ? "&" + string.Join("&", queryParameters.Select(x => $"{x.Key}={x.Value}").ToArray())
+                    ? "&" + string.Join("&", queryParameters.Select(x => $"{x.Key}={x.Value}"))
                     : "";
 
             return $"{SDK.BaseUrl}{path}?access_token={accessToken ?? SDK.GetAccessToken()}{queryString}";
@@ -167,10 +123,9 @@ namespace MercadoPago
                 case HttpMethod.POST:
                     return resource.Serialize();
                 case HttpMethod.PUT:
-                    return resource.Serialize();
-                    //JObject jactual = resource.Serialize();
-                    //JObject jold = resource.LastKnownJson;
-                    //return Serialization.GetDiffFromLastChange(jactual, jold);
+                    JObject jactual = resource.Serialize();
+                    JObject jold = resource.LastKnownJson;
+                    return Serialization.GetDiffFromLastChange(jactual, jold);
                 default:
                     return null;
             }
@@ -251,6 +206,36 @@ namespace MercadoPago
 
             foreach (var p in properties)
                 p.Property.SetValue(destination, p.Value,null);
+        }
+
+        private static void TryAddToCache(bool useCache, string cacheKey, MPAPIResponse response)
+        {
+            if (useCache)
+            {
+                MPCache.AddToCache(cacheKey, response);
+            }
+            else
+            {
+                MPCache.RemoveFromCache(cacheKey);
+            }
+        }
+
+        private static string GetCacheKey(HttpMethod httpMethod, string path) => $"{httpMethod}_{path}";
+
+        private static MPAPIResponse TryGetFromCache(bool useCache, string cacheKey)
+        {
+            MPAPIResponse response = null;
+            if (useCache)
+            {
+                response = MPCache.GetFromCache(cacheKey);
+
+                if (response != null)
+                {
+                    response.IsFromCache = true;
+                }
+            }
+
+            return response;
         }
 
         #endregion

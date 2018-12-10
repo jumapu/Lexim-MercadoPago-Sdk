@@ -10,7 +10,7 @@ using System.Text;
 
 namespace MercadoPago
 {
-    internal class MPRESTClient
+    internal partial class MPRESTClient
     {
         /// <summary>
         /// class to simulate HttpClient class, available from .NET 4.0 onward.

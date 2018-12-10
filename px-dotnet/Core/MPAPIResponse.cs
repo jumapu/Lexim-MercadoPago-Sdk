@@ -8,7 +8,7 @@ using System.Text;
 
 namespace MercadoPago
 {
-    internal class MPAPIResponse
+    internal partial class MPAPIResponse
     {
         #region Properties
 
