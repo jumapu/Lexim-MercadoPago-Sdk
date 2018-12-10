@@ -1,4 +1,6 @@
-﻿using NUnit.Framework;
+﻿#if NET45
+
+using NUnit.Framework;
 using System;
 using MercadoPago;
 using System.Configuration;
@@ -201,3 +203,5 @@ namespace MercadoPagoSDK.Test
 
 	}
 }
+
+#endif
