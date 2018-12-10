@@ -5,7 +5,7 @@ using MercadoPago.DataStructures.MerchantOrder;
 
 namespace MercadoPago.Resources
 {
-    public sealed class MerchantOrder : Resource<MerchantOrder>
+    public sealed partial class MerchantOrder : Resource<MerchantOrder>
     {
         #region Actions
 

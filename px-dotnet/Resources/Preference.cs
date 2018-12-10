@@ -14,7 +14,7 @@ namespace MercadoPago.Resources
     /// This API allows you to set up, during the payment process, 
     /// all the item information, any accepted means of payment and many other options.
     /// </summary>
-    public sealed class Preference: Resource<Preference>
+    public sealed partial class Preference: Resource<Preference>
     {
         #region Actions
 

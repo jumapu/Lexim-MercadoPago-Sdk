@@ -2,12 +2,11 @@
 using System.Collections.Generic;
 using System.Linq;
 using MercadoPago.DataStructures.Customer;
-using MercadoPago.Resources;
 using Newtonsoft.Json.Linq;
 
-namespace MercadoPago
+namespace MercadoPago.Resources
 {
-    public sealed class Customer : Resource<Customer>
+    public sealed partial class Customer : Resource<Customer>
     {
         #region Actions
 

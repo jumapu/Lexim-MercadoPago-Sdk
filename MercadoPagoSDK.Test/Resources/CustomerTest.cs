@@ -7,6 +7,7 @@ using System.Text;
 using System.Net;
 using System.Threading;
 using MercadoPago.DataStructures.Customer;
+using MercadoPago.Resources;
 
 namespace MercadoPagoSDK.Test.Resources
 {

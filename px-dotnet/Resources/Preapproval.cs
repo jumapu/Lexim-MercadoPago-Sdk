@@ -5,7 +5,7 @@ using MercadoPago.DataStructures.Preapproval;
 
 namespace MercadoPago.Resources
 {
-    public sealed class Preapproval : Resource<Preapproval>
+    public sealed partial class Preapproval : Resource<Preapproval>
     {
         #region Actions
 

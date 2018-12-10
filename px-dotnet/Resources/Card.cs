@@ -4,7 +4,7 @@ using MercadoPago.DataStructures.Customer.Card;
 
 namespace MercadoPago.Resources
 {
-    public sealed class Card : Resource<Card>
+    public sealed partial class Card : Resource<Card>
     {
         #region Actions 
        

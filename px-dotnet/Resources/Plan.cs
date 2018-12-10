@@ -3,7 +3,7 @@ using MercadoPago.DataStructures.Plan;
 
 namespace MercadoPago.Resources
 {
-    public sealed class Plan : Resource<Plan>
+    public sealed partial class Plan : Resource<Plan>
     {
         #region Actions
 

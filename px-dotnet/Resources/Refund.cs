@@ -1,7 +1,7 @@
 ﻿using System;
 namespace MercadoPago.Resources
 {
-    public sealed class Refund : Resource<Refund>
+    public sealed partial class Refund : Resource<Refund>
     {
         #region Actions
         
@@ -15,11 +15,11 @@ namespace MercadoPago.Resources
 
         public decimal? Amount { get; set; }
 
-        public decimal? PaymentId { get; internal set; }
+        public long? PaymentId { get; internal set; }
 
         public DateTime? DateCreated { get; private set; }
 
-        public new string Errors { get; set; }
+        public string Errors { get; set; }
 
         #endregion
 

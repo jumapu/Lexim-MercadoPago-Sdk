@@ -11,11 +11,10 @@ using Newtonsoft.Json.Converters;
 
 namespace MercadoPago.Resources
 {
-
     /// <summary>
     /// This service allows you to create, modify or read payments
     /// </summary>
-    public sealed class Payment : Resource<Payment>
+    public sealed partial class Payment : Resource<Payment>
     {
         #region Actions
         /// <summary>
@@ -57,7 +56,7 @@ namespace MercadoPago.Resources
         {
             var refund = new Refund
             {
-                PaymentId = (decimal) this.Id
+                PaymentId = this.Id
             };
             refund.Save();
 
@@ -79,7 +78,7 @@ namespace MercadoPago.Resources
         {
             var refund = new Refund
             {
-                PaymentId = (decimal) this.Id,
+                PaymentId = this.Id,
                 Amount = amount
             };
 
