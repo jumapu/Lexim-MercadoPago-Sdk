@@ -22,7 +22,7 @@ namespace MercadoPago
         {
             try
             {
-                System.Runtime.Caching.MemoryCache.Default.Add(key, response, DateTime.MaxValue);
+                System.Runtime.Caching.MemoryCache.Default.Add(key, response, DateTimeOffset.Now.AddYears(1));
             }
             catch (Exception ex)
             {
