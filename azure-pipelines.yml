@@ -1,0 +1,43 @@
+queue:
+  name: Hosted VS2017
+steps:
+- task: DotNetCoreCLI@2
+  displayName: 'dotnet restore'
+  inputs:
+    command: restore
+
+    projects: Lexim.MercadoPago.Sdk.Sln
+
+
+- task: DotNetCoreCLI@2
+  displayName: 'dotnet build'
+  inputs:
+    projects: Lexim.MercadoPago.Sdk.sln
+
+
+- task: DotNetCoreCLI@2
+  displayName: 'dotnet test'
+  inputs:
+    command: test
+
+    projects: MercadoPagoSDK.Test/MercadoPagoSDK.Test.csproj
+
+
+- task: DotNetCoreCLI@2
+  displayName: 'dotnet pack'
+  inputs:
+    command: pack
+
+    packagesToPack: 'px-dotnet\MercadoPagoSDK.csproj'
+
+
+- task: DotNetCoreCLI@2
+  displayName: 'dotnet push'
+  inputs:
+    command: push
+
+    nuGetFeedType: external
+
+    publishFeedCredentials: 'Nuget.org Public'
+
+

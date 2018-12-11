@@ -1,10 +1,11 @@
 
 # Unofficial Mercado Pago SDK for .NET
 
-Build Status: 
+![](https://img.shields.io/nuget/v/Lexim.MercadoPago.Sdk.svg)
 
-[![Build Status](https://www.myget.org/BuildSource/Badge/lexim-public?identifier=dd150ea6-14cf-4fc5-ba55-ede6cbf073af)](https://www.myget.org/BuildSource/Badge/lexim-public?identifier=dd150ea6-14cf-4fc5-ba55-ede6cbf073af)
+Build Status:
 
+[![Build Status](https://dev.azure.com/lexim1/LeximLibs/_apis/build/status/Lexim%20Mercado%20SDK%20(GitHub))](https://dev.azure.com/lexim1/LeximLibs/_build/latest?definitionId=1)
 
 This is an unofficial version of the [MercadoPago SDK for .NET](https://github.com/mercadopago/dx-dotnet).
 
