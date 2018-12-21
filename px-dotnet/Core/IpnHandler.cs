@@ -23,7 +23,7 @@ namespace MercadoPago
                 case Payment:
                     if (onPaymentReceived != null)
                     {
-                        if (!int.TryParse(id, out var paymentId))
+                        if (!long.TryParse(id, out var paymentId))
                             throw new MPException($"Invalid Payment Id: {id}");
                         var payment = Resources.Payment.FindById(paymentId);
                         onPaymentReceived(payment);
