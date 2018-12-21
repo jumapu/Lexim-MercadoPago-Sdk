@@ -1,6 +1,12 @@
 # Lexim MercadoPago SDK - Change Log
 
-## 2.0.0 (Current)
+## 2.0.2 (Current)
+  - Fixed `IpnHandler` incorrectly expecting the payment id to be a valid `int`-parsable string, when it is actually `long`.
+
+## 2.0.1 
+  - Moved CI to Azure Pipelines
+
+## 2.0.0
 
 ### Async support
 
