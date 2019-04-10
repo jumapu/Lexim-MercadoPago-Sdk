@@ -1,6 +1,9 @@
 # Lexim MercadoPago SDK - Change Log
 
-## 2.0.2 (Current)
+## 2.0.3 (Current)
+  - Added "status, date_created, last_modified" to Preapproval.
+
+## 2.0.2
   - Fixed `IpnHandler` incorrectly expecting the payment id to be a valid `int`-parsable string, when it is actually `long`.
 
 ## 2.0.1 
