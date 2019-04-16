@@ -1,7 +1,11 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
+using MercadoPago.Common;
 using MercadoPago.DataStructures.Preapproval;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Converters;
 
 namespace MercadoPago.Resources
 {
@@ -39,14 +43,14 @@ namespace MercadoPago.Resources
         #region Properties
 
         /// <summary>
-        ///  identifier
+        ///  Identifier
         /// </summary>
         public string Id { get; set; }
 
         /// <summary>
         ///  Buy reason
         /// </summary>
-        public string Reason { get; set; }
+        public string Reason { get; set; }        
 
         /// <summary>
         ///  Payer Email
@@ -80,6 +84,22 @@ namespace MercadoPago.Resources
         /// </summary>
         [StringLength(256)]
         public string ExternalReference { get; set; }
+
+        /// <summary>
+        /// Preapproval's status
+        /// </summary>
+        [JsonConverter(typeof(StringEnumConverter))]
+        public PreapprovalStatus? Status { get; set; }
+
+        /// <summary>
+        /// Preapproval's creation date
+        /// </summary>
+        public DateTime DateCreated { get; private set; }
+
+        /// <summary>
+        /// Preapproval's last modified date
+        /// </summary>
+        public DateTime LastModified { get; private set; }
 
         #endregion
     }
