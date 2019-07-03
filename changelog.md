@@ -1,6 +1,9 @@
 # Lexim MercadoPago SDK - Change Log
 
-## 2.0.3 (Current)
+## 2.0.4 (Current)
+  - Removed System.Runtime.Caching. Fixes [#11](https://github.com/LeximSoluciones/Lexim-MercadoPago-Sdk/issues/11).
+
+## 2.0.3
   - Added "status, date_created, last_modified" to Preapproval.
 
 ## 2.0.2
