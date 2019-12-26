@@ -321,6 +321,12 @@ namespace MercadoPago.Resources
         /// Sponsor Identification
         /// </summary>
         public long? SponsorId { get; set; }
+
+        /// <summary>
+        /// Taxes for payments
+        /// </summary>
+        public List<Taxes> Taxes { get; set; }
         #endregion
+
     }
 }
