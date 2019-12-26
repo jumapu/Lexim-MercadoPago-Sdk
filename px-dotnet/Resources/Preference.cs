@@ -157,6 +157,7 @@ namespace MercadoPago.Resources
         public bool? BinaryMode { get; set; }
         
 
+        public List<Tax> Taxes { get; set; } = new List<Tax>();
         #endregion
     }
 }
