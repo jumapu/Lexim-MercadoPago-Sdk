@@ -17,6 +17,12 @@ namespace MercadoPago.Resources
     public sealed partial class Payment : Resource<Payment>
     {
         #region Actions
+
+        public Payment Load(string id)
+        {
+            return FindById(long.Parse(id), WITHOUT_CACHE, null);
+        }
+
         /// <summary>
         /// Find a payment through an unique identifier with Local Cache Flag
         /// </summary>
@@ -86,12 +92,17 @@ namespace MercadoPago.Resources
 
             if (refund.Id.HasValue)
             {
-                this.Status = PaymentStatus.refunded;
+                var payment = Payment.FindById(_id, WITHOUT_CACHE, requestOptions);
+                _status = payment.Status;
+                _status_detail = payment.StatusDetail;
+                _transaction_amount_refunded = payment.TransactionAmountRefunded;
+                _refunds = payment.Refunds;
             }
             else
             {
-                //this.DelegateErrors(refund.Errors);
+                _errors = refund.Errors;
             }
+
             return this;
         }
 

@@ -6,7 +6,6 @@ using System.Text;
 using MercadoPago.Common;
 using MercadoPago.DataStructures.Preference;
 using Newtonsoft.Json;
-using Newtonsoft.Json.Converters;
 
 namespace MercadoPago.Resources
 {
