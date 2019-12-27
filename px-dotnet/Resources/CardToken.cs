@@ -2,117 +2,44 @@ using System;
 
 namespace MercadoPago.Resources
 {
-    public class CardToken : MPBase
+    public class CardToken : Resource<CardToken>
     {
         #region Actions
 
-        public CardToken Save()
-        {
-            return Save(null);
-        }
+        public CardToken Save(MPRequestOptions requestOptions = null) =>
+            Post("/v1/card_tokens");
 
-        [POSTEndpoint("/v1/card_tokens")]
-        public CardToken Save(MPRequestOptions requestOptions)
-        {
-            return (CardToken)ProcessMethod<CardToken>("Save", WITHOUT_CACHE, requestOptions);
-        }
-
-        public static CardToken FindById(string id)
-        {
-            return FindById(id, WITHOUT_CACHE, null);
-        }
-
-        [GETEndpoint("/v1/card_tokens/:id")]
-        public static CardToken FindById(string id, bool useCache, MPRequestOptions requestOptions)
-        {            
-            return (CardToken)ProcessMethod<CardToken>(typeof(CardToken), "FindById", id, useCache, requestOptions);
-        }
+        public static CardToken FindById(string id, bool useCache, MPRequestOptions requestOptions) =>
+            Get($"/v1/card_tokens/{id}");
 
         #endregion
 
-        private string id;
-        private string publicKey;
-        private string customerId;
-        private string cardId;
-        private string status;
-        private DateTime? dateCreated;
-        private DateTime? dateLastUpdate;
-        private DateTime? dateDue;
-        private bool? luhnValidation;
-        private bool? lineMode;
-        private bool? requireEsc;
-        private string securityCode;
+        #region Properties  
 
-        public string Id
-        {
-            get { return id; }
-            set { id = value; }
-        }
+        public string Id { get; set; }
 
-        public string PublicKey
-        {
-            get { return publicKey; }
-            set { publicKey = value; }
-        }
+        public string PublicKey { get; set; }
 
-        public string CustomerId
-        {
-            get { return customerId; }
-            set { customerId = value; }
-        }
+        public string CustomerId { get; set; }
 
-        public string CardId
-        {
-            get { return cardId; }
-            set { cardId = value; }
-        }
+        public string CardId { get; set; }
 
-        public string Status
-        {
-            get { return status; }
-            set { status = value; }
-        }
+        public string Status { get; set; }
 
-        public DateTime? DateCreated
-        {
-            get { return dateCreated; }
-            set { dateCreated = value; }
-        }
+        public DateTime? DateCreated { get; set; }
 
-        public DateTime? DateLastUpdate
-        {
-            get { return dateLastUpdate; }
-            set { dateLastUpdate = value; }
-        }
+        public DateTime? DateLastUpdate { get; set; }
 
-        public DateTime? DateDue
-        {
-            get { return dateDue; }
-            set { dateDue = value; }
-        }
+        public DateTime? DateDue { get; set; }
 
-        public bool? LuhnValidation
-        {
-            get { return luhnValidation; }
-            set { luhnValidation = value; }
-        }
+        public bool? LuhnValidation { get; set; }
 
-        public bool? LineMode
-        {
-            get { return lineMode; }
-            set { lineMode = value; }
-        }
+        public bool? LineMode { get; set; }
 
-        public bool? RequireEsc
-        {
-            get { return requireEsc; }
-            set { requireEsc = value; }
-        }
+        public bool? RequireEsc { get; set; }
 
-        public string SecurityCode
-        {
-            get { return securityCode; }
-            set { securityCode = value; }
-        }
+        public string SecurityCode { get; set; }
+
+        #endregion
     }
 }

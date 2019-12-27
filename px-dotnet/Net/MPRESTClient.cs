@@ -13,34 +13,19 @@ namespace MercadoPago
     internal partial class MPRESTClient
     {
         private IWebProxy _proxy;
-        private string _proxyHostName;
-        private int _proxyPort = -1;
 
-        public string ProxyHostName
-        {
-            get { return _proxyHostName; }
-            set { _proxyHostName = value; }
-        }
+        public string ProxyHostName { get; set; }
+
+        public int ProxyPort { get; set; } = -1;
 
         /// <summary>
         /// class to simulate HttpClient class, available from .NET 4.0 onward.
         /// </summary>
         private class MPRequest
         {
-
             public HttpWebRequest Request { get; set; }
             public byte[] RequestPayload { get; set; }
-
         }
-
-        public int ProxyPort
-        {
-            get { return _proxyPort; }
-            set { _proxyPort = value; }
-        }
-
-        public string ProxyHostName = null;
-        public int ProxyPort = -1;
 
         static MPRESTClient()
         {
@@ -69,8 +54,8 @@ namespace MercadoPago
         public MPRESTClient(string proxyHostName, int proxyPort)
         {
             _proxy = new WebProxy(proxyHostName, proxyPort);
-            _proxyHostName = proxyHostName;
-            _proxyPort = proxyPort;
+            ProxyHostName = proxyHostName;
+            ProxyPort = proxyPort;
         }
 
         public JToken ExecuteGenericRequest(
@@ -133,9 +118,6 @@ namespace MercadoPago
             int requestTimeout,
             int retries)
         {
-
-            System.Diagnostics.Trace.WriteLine("Payload " + httpMethod + " request to " + path + " : " + payload);
-
             var headers =
                 includeHeaders
                     ? new WebHeaderCollection
@@ -226,7 +208,7 @@ namespace MercadoPago
         /// Create a request to use in the call to a certain endpoint.
         /// </summary>
         /// <returns>Api response with the result of the call.</returns>
-        public MPRequest CreateRequest(HttpMethod httpMethod,
+        private MPRequest CreateRequest(HttpMethod httpMethod,
             string path,
             PayloadType payloadType,
             JObject payload,
@@ -269,22 +251,14 @@ namespace MercadoPago
             mpRequest.Request = (HttpWebRequest)HttpWebRequest.Create(path);
             mpRequest.Request.Method = httpMethod.ToString();
 
-            if (connectionTimeout > 0)
-            {
-                mpRequest.Request.Timeout = connectionTimeout;
-            }
-
             if (requestOptions.Timeout > 0)
             {
-                foreach (var header in colHeaders)
-                {
-                    mpRequest.Request.Headers.Add(header.ToString(), colHeaders[header.ToString()]);
-                }
+                mpRequest.Request.Timeout = requestOptions.Timeout;
             }
 
             if (payload != null) // POST & PUT
             {
-                byte[] data = null;
+                byte[] data;
                 if (payloadType != PayloadType.JSON)
                 {
                     var parametersDict = payload.ToObject<Dictionary<string, string>>();
@@ -315,6 +289,25 @@ namespace MercadoPago
             }
 
             return mpRequest;
+        }
+
+        private MPRequestOptions CreateRequestOptions(WebHeaderCollection colHeaders, int connectionTimeout, int retries)
+        {
+            var headers = new Dictionary<string, string>();
+            if (colHeaders != null)
+            {
+                foreach (var header in colHeaders)
+                {
+                    headers.Add(header.ToString(), colHeaders[header.ToString()]);
+                }
+            }
+
+            return new MPRequestOptions
+            {
+                Timeout = connectionTimeout,
+                Retries = retries,
+                CustomHeaders = headers
+            };
         }
 
         #endregion

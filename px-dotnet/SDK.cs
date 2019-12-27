@@ -12,7 +12,7 @@ namespace MercadoPago
     {
         private const int DEFAULT_REQUESTS_TIMEOUT = 30000;
         private const int DEFAULT_REQUESTS_RETRIES = 3;
-        private const string DEFAULT_BASE_URL = "https://api.mercadopago.com";
+        private const string DefaultBaseUrl = "https://api.mercadopago.com";
                 
         private static string UserToken = null;
         private static int _requestsTimeout = DEFAULT_REQUESTS_TIMEOUT;

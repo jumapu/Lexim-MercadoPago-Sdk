@@ -17,14 +17,14 @@ namespace MercadoPago
 
         public IWebProxy Proxy { get; set; }
 
-        public IDictionary<String, String> CustomHeaders { get; set; }
+        public Dictionary<string, string> CustomHeaders { get; set; }
 
         public MPRequestOptions()
         {
             Timeout = SDK.RequestsTimeout;
             Retries = SDK.RequestsRetries;
             Proxy = SDK.Proxy;
-            CustomHeaders = new Dictionary<String, String>();
+            CustomHeaders = new Dictionary<string, string>();
         }
     }
 }

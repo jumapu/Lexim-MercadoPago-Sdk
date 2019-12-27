@@ -8,6 +8,7 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using Newtonsoft.Json.Converters;
+using MercadoPago.DataStructures.Customer;
 
 namespace MercadoPago.Resources
 {
@@ -17,11 +18,6 @@ namespace MercadoPago.Resources
     public sealed partial class Payment : Resource<Payment>
     {
         #region Actions
-
-        public Payment Load(string id)
-        {
-            return FindById(long.Parse(id), WITHOUT_CACHE, null);
-        }
 
         /// <summary>
         /// Find a payment through an unique identifier with Local Cache Flag
@@ -92,15 +88,15 @@ namespace MercadoPago.Resources
 
             if (refund.Id.HasValue)
             {
-                var payment = Payment.FindById(_id, WITHOUT_CACHE, requestOptions);
-                _status = payment.Status;
-                _status_detail = payment.StatusDetail;
-                _transaction_amount_refunded = payment.TransactionAmountRefunded;
-                _refunds = payment.Refunds;
+                var payment = Payment.FindById(Id);
+                Status = payment.Status;
+                StatusDetail = payment.StatusDetail;
+                TransactionAmountRefunded = payment.TransactionAmountRefunded;
+                Refunds = payment.Refunds;
             }
             else
             {
-                _errors = refund.Errors;
+                //Errors = refund.Errors;
             }
 
             return this;
