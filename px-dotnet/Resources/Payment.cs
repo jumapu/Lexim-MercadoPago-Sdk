@@ -42,6 +42,7 @@ namespace MercadoPago.Resources
         /// <summary>
         /// Get all payments acoording to specific filters, with using cache option
         /// </summary>
+        [Obsolete("string-based dictionary usage is discouraged. Please use the Query() method and LINQ instead.")]
         public static List<Payment> Search(Dictionary<string, string> filters, bool useCache = false, string accessToken = null) => 
             GetList("/v1/payments/search", accessToken, useCache, filters);
 
