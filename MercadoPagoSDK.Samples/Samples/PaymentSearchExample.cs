@@ -4,6 +4,7 @@ using MercadoPago.Common;
 
 namespace MercadoPagoSDK.Samples
 {
+
     internal class PaymentSearchExample: ISample, IRequiresAccessToken
     {
         public string Name => "Search Payments using a LINQ Query";
